@@ -141,7 +141,7 @@ class ClientManager  implements Runnable{
 			try{
 				
                 while (sendMsg == null) {
-                	//this.wait(1000);
+                	senderThread.sleep(1500);
                 }
                 
                 synchronized(sendMsg){
