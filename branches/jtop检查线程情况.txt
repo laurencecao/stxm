@@ -1,0 +1,1 @@
+jconsole -pluginpath %JAVA_HOME%\demo\management\JTop\JTop.jar
