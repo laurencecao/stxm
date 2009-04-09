@@ -1,0 +1,4 @@
+netstat -ntpl
+
+pkill 进程名
+kill 进程名 pid

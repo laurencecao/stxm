@@ -1,0 +1,35 @@
+摘在SVN官方网站 
+
+ 
+
+bat:  SVN强制写注释的hooks脚本(Windows)    
+@echo off
+rem 文件名是: pre-commit.bat,放到repository/hooks目录下
+setlocal
+set REPOS=%1
+set TXN=%2
+rem check that logmessage contains at least 10 characters
+svnlook log "%REPOS%" -t "%TXN%" | findstr ".........." > nul
+if %errorlevel% gtr 0 goto err
+exit 0
+:err
+echo 提交时必须填写说明! 1>&2
+exit 1
+ 
+
+ 
+
+ 
+
+Bash:  SVN强制写注释的hooks脚本(Linux)    
+#!/bin/sh
+#文件名是: pre-commit,放到/repository/hooks目录下
+REPOS="$1"
+TXN="$2"
+# check that logmessage contains at least 10 alphanumeric characters
+LOGMSG=`$SVNLOOK log -t "$TXN" "$REPOS" | grep "[a-zA-Z0-9]" | wc -c`
+if [ "$LOGMSG" -lt 10 ];
+then
+echo -e "\nEmpty log message not allowed. Commit aborted!" 1>&2
+exit 1
+fi
