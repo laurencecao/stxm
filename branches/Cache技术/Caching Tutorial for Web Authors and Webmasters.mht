@@ -1,0 +1,2707 @@
+From: <ÓÉ Windows Internet Explorer 7 ±£´æ>
+Subject: Caching Tutorial for Web Authors and Webmasters
+Date: Thu, 12 Mar 2009 23:24:22 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_0000_01C9A369.AD20A0A0"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.3350
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0000_01C9A369.AD20A0A0
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.mnot.net/cache_docs/
+
+=EF=BB=BF<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" =
+"http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML xmlns:hx =3D =
+"http://purl.org/NET/html_extensions"><HEAD><TITLE>Caching Tutorial for =
+Web Authors and Webmasters</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8">
+<SCRIPT src=3D"http://www.mnot.net/templates/hinclude.js"=20
+type=3Dtext/javascript></SCRIPT>
+<LINK href=3D"http://www.mnot.net/style.css" type=3Dtext/css =
+rel=3Dstylesheet><LINK=20
+href=3D"#TOC" rel=3Dcontents><LINK href=3D"#ABOUT" rel=3Dcopyright><LINK =
+href=3D"#ABOUT"=20
+rel=3Ddisclaimer><LINK href=3D"mailto:mnot@pobox.com" rel=3Dauthor><LINK =
+rev=3Dmade=20
+href=3D"mailto:mnot@pobox.com"><LINK=20
+title=3D"Caching Tutorial for Web Authors and Webmasters"=20
+href=3D"http://www.mnot.net/cache_docs/" rel=3Dbookmark><LINK=20
+title=3D"What's a Web Cache? Why do people use them?" =
+href=3D"#DEFINITION"=20
+rel=3Dsection><LINK title=3D"Kinds of Web Caches" href=3D"#KINDS" =
+rel=3Dsection><LINK=20
+title=3D"Aren't Web Caches bad for me? Why should I help them?" =
+href=3D"#WHY"=20
+rel=3Dsection><LINK title=3D"How Web Caches Work" href=3D"#WORK" =
+rel=3Dsection><LINK=20
+title=3D"How (and how not) to Control Caches" href=3D"#CONTROL" =
+rel=3Dsection><LINK=20
+title=3D"Tips for Building a Cache-Aware Site" href=3D"#TIPS" =
+rel=3Dsection><LINK=20
+title=3D"Writing Cache-Aware Scripts" href=3D"#SCRIPT" =
+rel=3Dsection><LINK=20
+title=3D"Frequently Asked Questions" href=3D"#FAQ" rel=3Dsection><LINK=20
+title=3D"Implementation Notes - Web Servers" href=3D"#IMP-SERVER" =
+rel=3Dappendix><LINK=20
+title=3D"Implementation Notes - Server-Side Scripting" =
+href=3D"#IMP-SCRIPT"=20
+rel=3Dappendix><LINK title=3D"References and Further Information" =
+href=3D"#REF"=20
+rel=3Dappendix><!--base href=3D"http://www.mnot.net/cache_docs/" /-->
+<META=20
+content=3D"Covers the how's and why's of Web caching for people who =
+publish on the Web. With FAQs."=20
+name=3Ddescription>
+<META=20
+content=3D"FAQ, tutorial, Web cache, proxy, cache, Expires, =
+Cache-Control, HTTP, headers, Last-Modified, ETag, HTTP/1.1, webmaster, =
+Squid, Proxy Server, NetCache, CacheEngine"=20
+name=3Dkeywords>
+<META content=3D"MSHTML 6.00.6000.16809" name=3DGENERATOR></HEAD>
+<BODY>
+<H1>Caching Tutorial</H1>
+<P class=3Dsubtitle>for Web Authors and Webmasters</P>
+<P class=3Dbanner>This is an informational document. Although technical =
+in nature,=20
+it attempts to make the concepts involved understandable and applicable =
+in=20
+real-world situations. Because of this, some aspects of the material are =
+
+simplified or omitted, for the sake of clarity. If you are interested in =
+the=20
+minutia of the subject, please explore the <A=20
+href=3D"http://www.mnot.net/cache_docs/#REF">References and Further=20
+Information</A> at the end.</P><A id=3DTOC name=3DTOC></A>
+<OL class=3DTOC>
+  <LI class=3DTOC><A =
+href=3D"http://www.mnot.net/cache_docs/#DEFINITION">What=E2=80=99s a=20
+  Web Cache? Why do people use them?</A> </LI>
+  <LI class=3DTOC><A =
+href=3D"http://www.mnot.net/cache_docs/#KINDS">Kinds of Web=20
+  Caches</A>=20
+  <OL class=3DSUBTOC>
+    <LI class=3DSUBTOC><A =
+href=3D"http://www.mnot.net/cache_docs/#BROWSER">Browser=20
+    Caches</A> </LI>
+    <LI class=3DSUBTOC><A =
+href=3D"http://www.mnot.net/cache_docs/#PROXY">Proxy=20
+    Caches</A> </LI></OL></LI>
+  <LI class=3DTOC><A =
+href=3D"http://www.mnot.net/cache_docs/#WHY">Aren=E2=80=99t Web Caches=20
+  bad for me? Why should I help them?</A> </LI>
+  <LI class=3DTOC><A href=3D"http://www.mnot.net/cache_docs/#WORK">How =
+Web Caches=20
+  Work</A> </LI>
+  <LI class=3DTOC><A =
+href=3D"http://www.mnot.net/cache_docs/#CONTROL">How (and how=20
+  not) to Control Caches</A>=20
+  <OL class=3DSUBTOC>
+    <LI class=3DSUBTOC><A =
+href=3D"http://www.mnot.net/cache_docs/#META">HTML Meta=20
+    Tags vs. HTTP Headers</A> </LI>
+    <LI class=3DSUBTOC><A =
+href=3D"http://www.mnot.net/cache_docs/#PRAGMA">Pragma=20
+    HTTP Headers (and why they don=E2=80=99t work)</A> </LI>
+    <LI class=3DSUBTOC><A=20
+    href=3D"http://www.mnot.net/cache_docs/#EXPIRES">Controlling =
+Freshness with=20
+    the Expires HTTP Header</A> </LI>
+    <LI class=3DSUBTOC><A=20
+    href=3D"http://www.mnot.net/cache_docs/#CACHE-CONTROL">Cache-Control =
+HTTP=20
+    Headers</A> </LI>
+    <LI class=3DSUBTOC><A=20
+    href=3D"http://www.mnot.net/cache_docs/#VALIDATE">Validators and=20
+    Validation</A> </LI></OL></LI>
+  <LI class=3DTOC><A href=3D"http://www.mnot.net/cache_docs/#TIPS">Tips =
+for Building=20
+  a Cache-Aware Site</A> </LI>
+  <LI class=3DTOC><A =
+href=3D"http://www.mnot.net/cache_docs/#SCRIPT">Writing=20
+  Cache-Aware Scripts</A> </LI>
+  <LI class=3DTOC><A =
+href=3D"http://www.mnot.net/cache_docs/#FAQ">Frequently Asked=20
+  Questions</A> </LI>
+  <LI class=3DTOC><A=20
+  href=3D"http://www.mnot.net/cache_docs/#IMP-SERVER">Implementation =
+Notes =E2=80=94 Web=20
+  Servers</A> </LI>
+  <LI class=3DTOC><A=20
+  href=3D"http://www.mnot.net/cache_docs/#IMP-SCRIPT">Implementation =
+Notes =E2=80=94=20
+  Server-Side Scripting</A> </LI>
+  <LI class=3DTOC><A =
+href=3D"http://www.mnot.net/cache_docs/#REF">References and=20
+  Further Information</A> </LI>
+  <LI class=3DTOC><A =
+href=3D"http://www.mnot.net/cache_docs/#ABOUT">About This=20
+  Document</A> </LI></OL>
+<P class=3Dad align=3Dcenter>
+<SCRIPT type=3Dtext/javascript><!--=0A=
+google_ad_client =3D "pub-6006191079307782";=0A=
+google_ad_width =3D 468;=0A=
+google_ad_height =3D 60;=0A=
+google_ad_format =3D "468x60_as";=0A=
+google_ad_type =3D "text_image";=0A=
+//2007-01-25: cache_tutorial=0A=
+google_ad_channel =3D "8065211203";=0A=
+google_color_border =3D "E9E9E9";=0A=
+google_color_bg =3D "FEFEFE";=0A=
+google_color_link =3D "3366AA";=0A=
+google_color_text =3D "333333";=0A=
+google_color_url =3D "003399";=0A=
+//--></SCRIPT>
+
+<SCRIPT src=3D"http://pagead2.googlesyndication.com/pagead/show_ads.js"=20
+type=3Dtext/javascript>=0A=
+</SCRIPT>
+</P>
+<H2><A id=3DDEFINITION name=3DDEFINITION>What=E2=80=99s a Web Cache? Why =
+do people use=20
+them?</A></H2>
+<P>A <EM>Web cache</EM> sits between one or more Web servers (also known =
+as=20
+<EM>origin servers</EM>) and a client or many clients, and watches =
+requests come=20
+by, saving copies of the responses =E2=80=94 like HTML pages, images and =
+files=20
+(collectively known as <EM>representations</EM>) =E2=80=94 for itself. =
+Then, if there is=20
+another request for the same URL, it can use the response that it has, =
+instead=20
+of asking the origin server for it again.</P>
+<P>There are two main reasons that Web caches are used:</P>
+<UL>
+  <LI>To <STRONG>reduce latency</STRONG> =E2=80=94 Because the request =
+is satisfied from=20
+  the cache (which is closer to the client) instead of the origin =
+server, it=20
+  takes less time for it to get the representation and display it. This =
+makes=20
+  the Web seem more responsive. </LI>
+  <LI>To <STRONG>reduce network traffic</STRONG> =E2=80=94 Because =
+representations are=20
+  reused, it reduces the amount of bandwidth used by a client. This =
+saves money=20
+  if the client is paying for traffic, and keeps their bandwidth =
+requirements=20
+  lower and more manageable. </LI></UL>
+<H2><A id=3DKINDS name=3DKINDS>Kinds of Web Caches</A></H2>
+<H3><A id=3DBROWSER name=3DBROWSER>Browser Caches</A></H3>
+<P>If you examine the preferences dialog of any modern Web browser (like =
+
+Internet Explorer, Safari or Mozilla), you=E2=80=99ll probably notice a =
+=E2=80=9Ccache=E2=80=9D setting.=20
+This lets you set aside a section of your computer=E2=80=99s hard disk =
+to store=20
+representations that you=E2=80=99ve seen, just for you. The browser =
+cache works=20
+according to fairly simple rules. It will check to make sure that the=20
+representations are fresh, usually once a session (that is, the once in =
+the=20
+current invocation of the browser).</P>
+<P>This cache is especially useful when users hit the =
+=E2=80=9Cback=E2=80=9D button or click a=20
+link to see a page they=E2=80=99ve just looked at. Also, if you use the =
+same navigation=20
+images throughout your site, they=E2=80=99ll be served from =
+browsers=E2=80=99 caches almost=20
+instantaneously.</P>
+<H3><A id=3DPROXY name=3DPROXY>Proxy Caches</A></H3>
+<P>Web proxy caches work on the same principle, but a much larger scale. =
+Proxies=20
+serve hundreds or thousands of users in the same way; large corporations =
+and=20
+ISPs often set them up on their firewalls, or as standalone devices =
+(also known=20
+as <EM>intermediaries</EM>).</P>
+<P>Because proxy caches aren=E2=80=99t part of the client or the origin =
+server, but=20
+instead are out on the network, requests have to be routed to them =
+somehow. One=20
+way to do this is to use your browser=E2=80=99s proxy setting to =
+manually tell it what=20
+proxy to use; another is using interception. <EM>Interception =
+proxies</EM> have=20
+Web requests redirected to them by the underlying network itself, so =
+that=20
+clients don=E2=80=99t need to be configured for them, or even know about =
+them.</P>
+<P>Proxy caches are a type of <EM>shared cache</EM>; rather than just =
+having one=20
+person using them, they usually have a large number of users, and =
+because of=20
+this they are very good at reducing latency and network traffic. =
+That=E2=80=99s because=20
+popular representations are reused a number of times.</P>
+<H3><A id=3DGATEWAY name=3DGATEWAY>Gateway Caches</A></H3>
+<P>Also known as =E2=80=9Creverse proxy caches=E2=80=9D or =
+=E2=80=9Csurrogate caches,=E2=80=9D gateway caches=20
+are also intermediaries, but instead of being deployed by network =
+administrators=20
+to save bandwidth, they=E2=80=99re typically deployed by Webmasters =
+themselves, to make=20
+their sites more scalable, reliable and better performing.</P>
+<P>Requests can be routed to gateway caches by a number of methods, but=20
+typically some form of load balancer is used to make one or more of them =
+look=20
+like the origin server to clients.</P>
+<P><EM>Content delivery networks</EM> (CDNs) distribute gateway caches=20
+throughout the Internet (or a part of it) and sell caching to interested =
+Web=20
+sites. <A class=3Doffsite href=3D"http://www.speedera.com/">Speedera</A> =
+and <A=20
+class=3Doffsite href=3D"http://www.akamai.com/">Akamai</A> are examples =
+of CDNs.</P>
+<P>This tutorial focuses mostly on browser and proxy caches, although =
+some of=20
+the information is suitable for those interested in gateway caches as =
+well.</P>
+<H2><A id=3DWHY name=3DWHY>Aren=E2=80=99t Web Caches bad for me? Why =
+should I help=20
+them?</A></H2>
+<P>Web caching is one of the most misunderstood technologies on the =
+Internet.=20
+Webmasters in particular fear losing control of their site, because a =
+proxy=20
+cache can =E2=80=9Chide=E2=80=9D their users from them, making it =
+difficult to see who=E2=80=99s using=20
+the site.</P>
+<P>Unfortunately for them, even if Web caches didn=E2=80=99t exist, =
+there are too many=20
+variables on the Internet to assure that they=E2=80=99ll be able to get =
+an accurate=20
+picture of how users see their site. If this is a big concern for you, =
+this=20
+tutorial will teach you how to get the statistics you need without =
+making your=20
+site cache-unfriendly.</P>
+<P>Another concern is that caches can serve content that is out of date, =
+or=20
+<EM>stale</EM>. However, this tutorial can show you how to configure =
+your server=20
+to control how your content is cached.</P>
+<P class=3D"callout right"><ACRONYM=20
+title=3D"Content Delivery Networks">CDNs</ACRONYM> are an interesting =
+development,=20
+because unlike many proxy caches, their gateway caches are aligned with =
+the=20
+interests of the Web site being cached, so that these problems =
+aren=E2=80=99t seen.=20
+However, even when you use a CDN, you still have to consider that there =
+will be=20
+proxy and browser caches downstream.</P>
+<P>On the other hand, if you plan your site well, caches can help your =
+Web site=20
+load faster, and save load on your server and Internet link. The =
+difference can=20
+be dramatic; a site that is difficult to cache may take several seconds =
+to load,=20
+while one that takes advantage of caching can seem instantaneous in =
+comparison.=20
+Users will appreciate a fast-loading site, and will visit more =
+often.</P>
+<P>Think of it this way; many large Internet companies are spending =
+millions of=20
+dollars setting up farms of servers around the world to replicate their =
+content,=20
+in order to make it as fast to access as possible for their users. =
+Caches do the=20
+same for you, and they=E2=80=99re even closer to the end user. Best of =
+all, you don=E2=80=99t=20
+have to pay for them.</P>
+<P>The fact is that proxy and browser caches will be used whether you =
+like it or=20
+not. If you don=E2=80=99t configure your site to be cached correctly, it =
+will be cached=20
+using whatever defaults the cache=E2=80=99s administrator decides =
+upon.</P>
+<H2><A id=3DWORK name=3DWORK>How Web Caches Work</A></H2>
+<P>All caches have a set of rules that they use to determine when to =
+serve a=20
+representation from the cache, if it=E2=80=99s available. Some of these =
+rules are set in=20
+the protocols (HTTP 1.0 and 1.1), and some are set by the administrator =
+of the=20
+cache (either the user of the browser cache, or the proxy =
+administrator).</P>
+<P>Generally speaking, these are the most common rules that are followed =
+(don=E2=80=99t=20
+worry if you don=E2=80=99t understand the details, it will be explained =
+below):</P>
+<DIV class=3Dol>
+<OL>
+  <LI>If the response=E2=80=99s headers tell the cache not to keep it, =
+it won=E2=80=99t. </LI>
+  <LI>If the request is authenticated or secure, it won=E2=80=99t be =
+cached. </LI>
+  <LI>If no validator (an <CODE>ETag</CODE> or =
+<CODE>Last-Modified</CODE>=20
+  header) is present on a response, <EM>and</EM> it doesn't have any =
+explicit=20
+  freshness information, it will be considered uncacheable. </LI>
+  <LI>A cached representation is considered <EM>fresh</EM> (that is, =
+able to be=20
+  sent to a client without checking with the origin server) if:=20
+  <UL>
+    <LI>It has an expiry time or other age-controlling header set, and =
+is still=20
+    within the fresh period. </LI>
+    <LI>If a browser cache has already seen the representation, and has =
+been set=20
+    to check once a session. </LI>
+    <LI>If a proxy cache has seen the representation recently, and it =
+was=20
+    modified relatively long ago. </LI></UL>Fresh representations are =
+served=20
+  directly from the cache, without checking with the origin server. =
+</LI>
+  <LI>If an representation is stale, the origin server will be asked to=20
+  <EM>validate</EM> it, or tell the cache whether the copy that it has =
+is still=20
+  good. </LI></OL></DIV>
+<P>Together, <EM>freshness</EM> and <EM>validation</EM> are the most =
+important=20
+ways that a cache works with content. A fresh representation will be =
+available=20
+instantly from the cache, while a validated representation will avoid =
+sending=20
+the entire representation over again if it hasn=E2=80=99t changed.</P>
+<H2><A id=3DCONTROL name=3DCONTROL>How (and how not) to Control =
+Caches</A></H2>
+<P>There are several tools that Web designers and Webmasters can use to=20
+fine-tune how caches will treat their sites. It may require getting your =
+hands a=20
+little dirty with your server=E2=80=99s configuration, but the results =
+are worth it. For=20
+details on how to use these tools with your server, see the <A=20
+href=3D"http://www.mnot.net/cache_docs/#IMP-SERVER">Implementation</A> =
+sections=20
+below.</P>
+<H3><A id=3DMETA name=3DMETA>HTML Meta Tags and HTTP Headers</A></H3>
+<P>HTML authors can put tags in a document=E2=80=99s &lt;HEAD&gt; =
+section that describe=20
+its attributes. These <EM>meta tags</EM> are often used in the belief =
+that they=20
+can mark a document as uncacheable, or expire it at a certain time.</P>
+<P>Meta tags are easy to use, but aren=E2=80=99t very effective. =
+That=E2=80=99s because they=E2=80=99re=20
+only honored by a few browser caches (which actually read the HTML), not =
+proxy=20
+caches (which almost never read the HTML in the document). While it may =
+be=20
+tempting to put a Pragma: no-cache meta tag into a Web page, it =
+won=E2=80=99t=20
+necessarily cause it to be kept fresh.</P>
+<P class=3D"callout right">If your site is hosted at an ISP or hosting =
+farm and=20
+they don=E2=80=99t give you the ability to set arbitrary HTTP headers =
+(like=20
+<CODE>Expires</CODE> and <CODE>Cache-Control</CODE>), complain loudly; =
+these are=20
+tools necessary for doing your job.</P>
+<P>On the other hand, true <EM>HTTP headers</EM> give you a lot of =
+control over=20
+how both browser caches and proxies handle your representations. They =
+can=E2=80=99t be=20
+seen in the HTML, and are usually automatically generated by the Web =
+server.=20
+However, you can control them to some degree, depending on the server =
+you use.=20
+In the following sections, you=E2=80=99ll see what HTTP headers are =
+interesting, and how=20
+to apply them to your site.</P>
+<P>HTTP headers are sent by the server before the HTML, and only seen by =
+the=20
+browser and any intermediate caches. Typical HTTP 1.1 response headers =
+might=20
+look like this:</P><PRE class=3Dexample>HTTP/1.1 200 OK
+Date: Fri, 30 Oct 1998 13:19:41 GMT
+Server: Apache/1.3.3 (Unix)
+Cache-Control: max-age=3D3600, must-revalidate
+Expires: Fri, 30 Oct 1998 14:19:41 GMT
+Last-Modified: Mon, 29 Jun 1998 02:28:12 GMT
+ETag: "3e86-410-3596fbbc"
+Content-Length: 1040
+Content-Type: text/html</PRE>
+<P>The HTML would follow these headers, separated by a blank line. See =
+the <A=20
+href=3D"http://www.mnot.net/cache_docs/#IMP-SERVER">Implementation</A> =
+sections=20
+for information about how to set HTTP headers.</P>
+<H3><A id=3DPRAGMA name=3DPRAGMA>Pragma HTTP Headers (and why they =
+don=E2=80=99t=20
+work)</A></H3>
+<P>Many people believe that assigning a <CODE>Pragma: no-cache</CODE> =
+HTTP=20
+header to a representation will make it uncacheable. This is not =
+necessarily=20
+true; the HTTP specification does not set any guidelines for Pragma =
+response=20
+headers; instead, Pragma request headers (the headers that a browser =
+sends to a=20
+server) are discussed. Although a few caches may honor this header, the =
+majority=20
+won=E2=80=99t, and it won=E2=80=99t have any effect. Use the headers =
+below instead.</P>
+<H3><A id=3DEXPIRES name=3DEXPIRES>Controlling Freshness with the =
+Expires HTTP=20
+Header</A></H3>
+<P>The <CODE>Expires</CODE> HTTP header is a basic means of controlling =
+caches;=20
+it tells all caches how long the associated representation is fresh for. =
+After=20
+that time, caches will always check back with the origin server to see =
+if a=20
+document is changed. <CODE>Expires</CODE> headers are supported by =
+practically=20
+every cache.</P>
+<P>Most Web servers allow you to set <CODE>Expires</CODE> response =
+headers in a=20
+number of ways. Commonly, they will allow setting an absolute time to =
+expire, a=20
+time based on the last time that the client retrieved the representation =
+(last=20
+<EM>access time</EM>), or a time based on the last time the document =
+changed on=20
+your server (last <EM>modification time</EM>).</P>
+<P><CODE>Expires</CODE> headers are especially good for making static =
+images=20
+(like navigation bars and buttons) cacheable. Because they don=E2=80=99t =
+change much,=20
+you can set extremely long expiry time on them, making your site appear =
+much=20
+more responsive to your users. They=E2=80=99re also useful for =
+controlling caching of a=20
+page that is regularly changed. For instance, if you update a news page =
+once a=20
+day at 6am, you can set the representation to expire at that time, so =
+caches=20
+will know when to get a fresh copy, without users having to hit =
+=E2=80=98reload=E2=80=99.</P>
+<P>The <STRONG>only</STRONG> value valid in an <CODE>Expires</CODE> =
+header is a=20
+HTTP date; anything else will most likely be interpreted as =E2=80=98in =
+the past=E2=80=99, so=20
+that the representation is uncacheable. Also, remember that the time in =
+a HTTP=20
+date is Greenwich Mean Time (GMT), not local time.</P>
+<P>For example:</P><PRE><SPAN class=3Dexample>Expires: Fri, 30 Oct 1998 =
+14:19:41 GMT</SPAN></PRE>
+<P class=3D"callout right">It=E2=80=99s important to make sure that your =
+Web server=E2=80=99s=20
+clock is accurate if you use the <CODE>Expires</CODE> header. One way to =
+do this=20
+is using the <A class=3Doffsite href=3D"http://www.ntp.org/">Network =
+Time=20
+Protocol</A> (NTP); talk to your local system administrator to find out=20
+more.</P>
+<P>Although the <CODE>Expires</CODE> header is useful, it has some =
+limitations.=20
+First, because there=E2=80=99s a date involved, the clocks on the Web =
+server and the=20
+cache must be synchronised; if they have a different idea of the time, =
+the=20
+intended results won=E2=80=99t be achieved, and caches might wrongly =
+consider stale=20
+content as fresh.</P>
+<P>Another problem with <CODE>Expires</CODE> is that it=E2=80=99s easy =
+to forget that=20
+you=E2=80=99ve set some content to expire at a particular time. If you =
+don=E2=80=99t update an=20
+<CODE>Expires</CODE> time before it passes, each and every request will =
+go back=20
+to your Web server, increasing load and latency.</P>
+<H3><A id=3DCACHE-CONTROL name=3DCACHE-CONTROL>Cache-Control HTTP =
+Headers</A></H3>
+<P>HTTP 1.1 introduced a new class of headers, =
+<CODE>Cache-Control</CODE>=20
+response headers, to give Web publishers more control over their =
+content, and to=20
+address the limitations of <CODE>Expires</CODE>.</P>
+<P>Useful <CODE>Cache-Control</CODE> response headers include:</P>
+<UL>
+  <LI><STRONG><CODE>max-age=3D</CODE></STRONG>[seconds] =E2=80=94 =
+specifies the maximum=20
+  amount of time that an representation will be considered fresh. =
+Similar to=20
+  <CODE>Expires</CODE>, this directive is relative to the time of the =
+request,=20
+  rather than absolute. [seconds] is the number of seconds from the time =
+of the=20
+  request you wish the representation to be fresh for. </LI>
+  <LI><STRONG><CODE>s-maxage=3D</CODE></STRONG>[seconds] =E2=80=94 =
+similar to=20
+  <CODE>max-age</CODE>, except that it only applies to shared (e.g., =
+proxy)=20
+  caches. </LI>
+  <LI><STRONG><CODE>public</CODE></STRONG> =E2=80=94 marks authenticated =
+responses as=20
+  cacheable; normally, if HTTP authentication is required, responses are =
+
+  automatically uncacheable (for shared caches). </LI>
+  <LI><STRONG><CODE>no-cache</CODE></STRONG> =E2=80=94 forces caches to =
+submit the=20
+  request to the origin server for validation before releasing a cached =
+copy,=20
+  every time. This is useful to assure that authentication is respected =
+(in=20
+  combination with public), or to maintain rigid freshness, without =
+sacrificing=20
+  all of the benefits of caching. </LI>
+  <LI><STRONG><CODE>no-store</CODE></STRONG> =E2=80=94 instructs caches =
+not to keep a=20
+  copy of the representation under any conditions. </LI>
+  <LI><STRONG><CODE>must-revalidate</CODE></STRONG> =E2=80=94 tells =
+caches that they=20
+  must obey any freshness information you give them about a =
+representation. HTTP=20
+  allows caches to serve stale representations under special conditions; =
+by=20
+  specifying this header, you=E2=80=99re telling the cache that you want =
+it to strictly=20
+  follow your rules. </LI>
+  <LI><STRONG><CODE>proxy-revalidate</CODE></STRONG> =E2=80=94 similar =
+to=20
+  <CODE>must-revalidate</CODE>, except that it only applies to proxy =
+caches.=20
+  </LI></UL>
+<P>For example:</P><PRE><SPAN class=3Dexample>Cache-Control: =
+max-age=3D3600, must-revalidate</SPAN></PRE>
+<P>If you plan to use the <CODE>Cache-Control</CODE> headers, you should =
+have a=20
+look at the excellent documentation in HTTP 1.1; see <A=20
+href=3D"http://www.mnot.net/cache_docs/#REF">References and Further=20
+Information</A>.</P>
+<H3><A id=3DVALIDATE name=3DVALIDATE>Validators and Validation</A></H3>
+<P class=3D"ad right">
+<SCRIPT type=3Dtext/javascript><!--=0A=
+google_ad_client =3D "pub-6006191079307782";=0A=
+google_ad_width =3D 250;=0A=
+google_ad_height =3D 250;=0A=
+google_ad_format =3D "250x250_as";=0A=
+google_ad_type =3D "text_image";=0A=
+//2007-01-25: cache_tutorial_side=0A=
+google_ad_channel =3D "6984516876";=0A=
+google_color_border =3D "E9E9E9";=0A=
+google_color_bg =3D "FEFEFE";=0A=
+google_color_link =3D "3366AA";=0A=
+google_color_text =3D "333333";=0A=
+google_color_url =3D "003399";=0A=
+//--></SCRIPT>
+
+<SCRIPT src=3D"http://pagead2.googlesyndication.com/pagead/show_ads.js"=20
+type=3Dtext/javascript>=0A=
+</SCRIPT>
+</P>
+<P>In <A href=3D"http://www.mnot.net/cache_docs/#WORK">How Web Caches =
+Work</A>, we=20
+said that validation is used by servers and caches to communicate when =
+an=20
+representation has changed. By using it, caches avoid having to download =
+the=20
+entire representation when they already have a copy locally, but =
+they=E2=80=99re not=20
+sure if it=E2=80=99s still fresh.</P>
+<P>Validators are very important; if one isn=E2=80=99t present, and =
+there isn=E2=80=99t any=20
+freshness information (<CODE>Expires</CODE> or =
+<CODE>Cache-Control</CODE>)=20
+available, caches will not store a representation at all.</P>
+<P>The most common validator is the time that the document last changed, =
+as=20
+communicated in <CODE>Last-Modified</CODE> header. When a cache has an=20
+representation stored that includes a <CODE>Last-Modified</CODE> header, =
+it can=20
+use it to ask the server if the representation has changed since the =
+last time=20
+it was seen, with an <CODE>If-Modified-Since</CODE> request.</P>
+<P>HTTP 1.1 introduced a new kind of validator called the <EM>ETag</EM>. =
+ETags=20
+are unique identifiers that are generated by the server and changed =
+every time=20
+the representation does. Because the server controls how the ETag is =
+generated,=20
+caches can be surer that if the ETag matches when they make a=20
+<CODE>If-None-Match</CODE> request, the representation really is the =
+same.</P>
+<P>Almost all caches use Last-Modified times in determining if an =
+representation=20
+is fresh; ETag validation is also becoming prevalent.</P>
+<P>Most modern Web servers will generate both <CODE>ETag</CODE> and=20
+<CODE>Last-Modified</CODE> headers to use as validators for static =
+content=20
+(i.e., files) automatically; you won=E2=80=99t have to do anything. =
+However, they don=E2=80=99t=20
+know enough about dynamic content (like CGI, ASP or database sites) to =
+generate=20
+them; see <A href=3D"http://www.mnot.net/cache_docs/#SCRIPT">Writing =
+Cache-Aware=20
+Scripts</A>.</P>
+<H2><A id=3DTIPS name=3DTIPS>Tips for Building a Cache-Aware =
+Site</A></H2>
+<P>Besides using freshness information and validation, there are a =
+number of=20
+other things you can do to make your site more cache-friendly.</P>
+<UL>
+  <LI><STRONG>Use URLs consistently</STRONG> =E2=80=94 this is the =
+golden rule of=20
+  caching. If you serve the same content on different pages, to =
+different users,=20
+  or from different sites, it should use the same URL. This is the =
+easiest and=20
+  most effective may to make your site cache-friendly. For example, if =
+you use=20
+  =E2=80=9C/index.html=E2=80=9D in your HTML as a reference once, always =
+use it that way. </LI>
+  <LI><STRONG>Use a common library of images</STRONG> and other elements =
+and=20
+  refer back to them from different places. </LI>
+  <LI><STRONG>Make caches store images and pages that don=E2=80=99t =
+change=20
+  often</STRONG> by using a <CODE>Cache-Control: max-age</CODE> header =
+with a=20
+  large value. </LI>
+  <LI><STRONG>Make caches recognize regularly updated pages</STRONG> by=20
+  specifying an appropriate max-age or expiration time. </LI>
+  <LI><STRONG>If a resource (especially a downloadable file) changes, =
+change its=20
+  name.</STRONG> That way, you can make it expire far in the future, and =
+still=20
+  guarantee that the correct version is served; the page that links to =
+it is the=20
+  only one that will need a short expiry time. </LI>
+  <LI><STRONG>Don=E2=80=99t change files unnecessarily.</STRONG> If you =
+do, everything=20
+  will have a falsely young <CODE>Last-Modified</CODE> date. For =
+instance, when=20
+  updating your site, don=E2=80=99t copy over the entire site; just move =
+the files that=20
+  you=E2=80=99ve changed. </LI>
+  <LI><STRONG>Use cookies only where necessary</STRONG> =E2=80=94 =
+cookies are difficult=20
+  to cache, and aren=E2=80=99t needed in most situations. If you must =
+use a cookie,=20
+  limit its use to dynamic pages. </LI>
+  <LI><STRONG>Minimize use of SSL</STRONG> =E2=80=94 because encrypted =
+pages are not=20
+  stored by shared caches, use them only when you have to, and use =
+images on SSL=20
+  pages sparingly. </LI>
+  <LI><STRONG>use the <A =
+href=3D"http://www.mnot.net/cacheability/">Cacheability=20
+  Engine</A></STRONG> =E2=80=94 it can help you apply many of the =
+concepts in this=20
+  tutorial. </LI></UL>
+<H2><A id=3DSCRIPT name=3DSCRIPT>Writing Cache-Aware Scripts</A></H2>
+<P>By default, most scripts won=E2=80=99t return a validator (a=20
+<CODE>Last-Modified</CODE> or <CODE>ETag</CODE> response header) or =
+freshness=20
+information (<CODE>Expires</CODE> or <CODE>Cache-Control</CODE>). While =
+some=20
+scripts really are dynamic (meaning that they return a different =
+response for=20
+every request), many (like search engines and database-driven sites) can =
+benefit=20
+from being cache-friendly.</P>
+<P>Generally speaking, if a script produces output that is reproducible =
+with the=20
+same request at a later time (whether it be minutes or days later), it =
+should be=20
+cacheable. If the content of the script changes only depending on =
+what=E2=80=99s in the=20
+URL, it is cacheble; if the output depends on a cookie, authentication=20
+information or other external criteria, it probably isn=E2=80=99t.</P>
+<UL>
+  <LI>The best way to make a script cache-friendly (as well as perform =
+better)=20
+  is to dump its content to a plain file whenever it changes. The Web =
+server can=20
+  then treat it like any other Web page, generating and using =
+validators, which=20
+  makes your life easier. Remember to only write files that have =
+changed, so the=20
+  <CODE>Last-Modified</CODE> times are preserved. </LI>
+  <LI>Another way to make a script cacheable in a limited fashion is to =
+set an=20
+  age-related header for as far in the future as practical. Although =
+this can be=20
+  done with <CODE>Expires</CODE>, it=E2=80=99s probably easiest to do so =
+with=20
+  <CODE>Cache-Control: max-age</CODE>, which will make the request fresh =
+for an=20
+  amount of time after the request. </LI>
+  <LI>If you can=E2=80=99t do that, you=E2=80=99ll need to make the =
+script generate a validator,=20
+  and then respond to <CODE>If-Modified-Since</CODE> and/or=20
+  <CODE>If-None-Match</CODE> requests. This can be done by parsing the =
+HTTP=20
+  headers, and then responding with <CODE>304 Not Modified</CODE> when=20
+  appropriate. Unfortunately, this is not a trival task. </LI></UL>
+<P>Some other tips;</P>
+<UL>
+  <LI><STRONG>Don=E2=80=99t use POST</STRONG> unless it=E2=80=99s =
+appropriate. Responses to the=20
+  POST method aren=E2=80=99t kept by most caches; if you send =
+information in the path or=20
+  query (via GET), caches can store that information for the future. =
+</LI>
+  <LI><STRONG>Don=E2=80=99t embed user-specific information in the =
+URL</STRONG> unless=20
+  the content generated is completely unique to that user. </LI>
+  <LI><STRONG>Don=E2=80=99t count on all requests from a user coming =
+from the same=20
+  host</STRONG>, because caches often work together. </LI>
+  <LI><STRONG>Generate <CODE>Content-Length</CODE> response =
+headers.</STRONG>=20
+  It=E2=80=99s easy to do, and it will allow the response of your script =
+to be used in a=20
+  <EM>persistent connection</EM>. This allows clients to request =
+multiple=20
+  representations on one TCP/IP connection, instead of setting up a =
+connection=20
+  for every request. It makes your site seem much faster. </LI></UL>
+<P>See the <A =
+href=3D"http://www.mnot.net/cache_docs/#IMP-SCRIPT">Implementation=20
+Notes</A> for more specific information.</P>
+<H2><A id=3DFAQ name=3DFAQ>Frequently Asked Questions</A></H2>
+<H3>What are the most important things to make cacheable?</H3>
+<P>A good strategy is to identify the most popular, largest =
+representations=20
+(especially images) and work with them first.</P>
+<H3>How can I make my pages as fast as possible with caches?</H3>
+<P>The most cacheable representation is one with a long freshness time =
+set.=20
+Validation does help reduce the time that it takes to see a =
+representation, but=20
+the cache still has to contact the origin server to see if it=E2=80=99s =
+fresh. If the=20
+cache already knows it=E2=80=99s fresh, it will be served directly.</P>
+<H3>I understand that caching is good, but I need to keep statistics on =
+how many=20
+people visit my page!</H3>
+<P>If you must know every time a page is accessed, select ONE small item =
+on a=20
+page (or the page itself), and make it uncacheable, by giving it a =
+suitable=20
+headers. For example, you could refer to a 1x1 transparent uncacheable =
+image=20
+from each page. The <CODE>Referer</CODE> header will contain information =
+about=20
+what page called it.</P>
+<P>Be aware that even this will not give truly accurate statistics about =
+your=20
+users, and is unfriendly to the Internet and your users; it generates=20
+unnecessary traffic, and forces people to wait for that uncached item to =
+be=20
+downloaded. For more information about this, see On Interpreting Access=20
+Statistics in the <A=20
+href=3D"http://www.mnot.net/cache_docs/#REF">references</A>.</P>
+<H3>How can I see a representation=E2=80=99s HTTP headers?</H3>
+<P>Many Web browsers let you see the <CODE>Expires</CODE> and=20
+<CODE>Last-Modified</CODE> headers are in a =E2=80=9Cpage info=E2=80=9D =
+or similar interface. If=20
+available, this will give you a menu of the page and any representations =
+(like=20
+images) associated with it, along with their details.</P>
+<P>To see the full headers of a representation, you can manually connect =
+to the=20
+Web server using a Telnet client.</P>
+<P>To do so, you may need to type the port (be default, 80) into a =
+separate=20
+field, or you may need to connect to <CODE>www.example.com:80</CODE> or=20
+<CODE>www.example.com 80</CODE> (note the space). Consult your Telnet =
+client=E2=80=99s=20
+documentation.</P>
+<P>Once you=E2=80=99ve opened a connection to the site, type a request =
+for the=20
+representation. For instance, if you want to see the headers for=20
+<CODE>http://www.example.com/foo.html</CODE>, connect to=20
+<CODE>www.example.com</CODE>, port <CODE>80</CODE>, and type:</P><PRE =
+class=3Dexample>GET /foo.html HTTP/1.1 [return]
+Host: www.example.com [return][return]</PRE>
+<P>Press the Return key every time you see <CODE>[return]</CODE>; make =
+sure to=20
+press it twice at the end. This will print the headers, and then the =
+full=20
+representation. To see the headers only, substitute HEAD for GET.</P>
+<H3>My pages are password-protected; how do proxy caches deal with =
+them?</H3>
+<P>By default, pages protected with HTTP authentication are considered =
+private;=20
+they will not be kept by shared caches. However, you can make =
+authenticated=20
+pages public with a Cache-Control: public header; HTTP 1.1-compliant =
+caches will=20
+then allow them to be cached.</P>
+<P>If you=E2=80=99d like such pages to be cacheable, but still =
+authenticated for every=20
+user, combine the <CODE>Cache-Control: public</CODE> and =
+<CODE>no-cache</CODE>=20
+headers. This tells the cache that it must submit the new =
+client=E2=80=99s=20
+authentication information to the origin server before releasing the=20
+representation from the cache. This would look like:</P><PRE><SPAN =
+class=3Dexample>Cache-Control: public, no-cache</SPAN></PRE>
+<P>Whether or not this is done, it=E2=80=99s best to minimize use of =
+authentication; for=20
+example, if your images are not sensitive, put them in a separate =
+directory and=20
+configure your server not to force authentication for it. That way, =
+those images=20
+will be naturally cacheable.</P>
+<H3>Should I worry about security if people access my site through a =
+cache?</H3>
+<P>SSL pages are not cached (or decrypted) by proxy caches, so you =
+don=E2=80=99t have to=20
+worry about that. However, because caches store non-SSL requests and =
+URLs=20
+fetched through them, you should be conscious about unsecured sites; an=20
+unscrupulous administrator could conceivably gather information about =
+their=20
+users, especially in the URL.</P>
+<P>In fact, any administrator on the network between your server and =
+your=20
+clients could gather this type of information. One particular problem is =
+when=20
+CGI scripts put usernames and passwords in the URL itself; this makes it =
+trivial=20
+for others to find and user their login.</P>
+<P>If you=E2=80=99re aware of the issues surrounding Web security in =
+general, you=20
+shouldn=E2=80=99t have any surprises from proxy caches.</P>
+<H3>I=E2=80=99m looking for an integrated Web publishing solution. Which =
+ones are=20
+cache-aware?</H3>
+<P>It varies. Generally speaking, the more complex a solution is, the =
+more=20
+difficult it is to cache. The worst are ones which dynamically generate =
+all=20
+content and don=E2=80=99t provide validators; they may not be cacheable =
+at all. Speak=20
+with your vendor=E2=80=99s technical staff for more information, and see =
+the=20
+Implementation notes below.</P>
+<H3>My images expire a month from now, but I need to change them in the =
+caches=20
+now!</H3>
+<P>The Expires header can=E2=80=99t be circumvented; unless the cache =
+(either browser or=20
+proxy) runs out of room and has to delete the representations, the =
+cached copy=20
+will be used until then.</P>
+<P>The most effective solution is to change any links to them; that way, =
+
+completely new representations will be loaded fresh from the origin =
+server.=20
+Remember that the page that refers to an representation will be cached =
+as well.=20
+Because of this, it=E2=80=99s best to make static images and similar =
+representations=20
+very cacheable, while keeping the HTML pages that refer to them on a =
+tight=20
+leash.</P>
+<P>If you want to reload an representation from a specific cache, you =
+can either=20
+force a reload (in Firefox, holding down shift while pressing =
+=E2=80=98reload=E2=80=99 will do=20
+this by issuing a <CODE>Pragma: no-cache</CODE> request header) while =
+using the=20
+cache. Or, you can have the cache administrator delete the =
+representation=20
+through their interface.</P>
+<H3>I run a Web Hosting service. How can I let my users publish =
+cache-friendly=20
+pages?</H3>
+<P>If you=E2=80=99re using Apache, consider allowing them to use =
+.htaccess files and=20
+providing appropriate documentation.</P>
+<P>Otherwise, you can establish predetermined areas for various caching=20
+attributes in each virtual server. For instance, you could specify a =
+directory=20
+/cache-1m that will be cached for one month after access, and a =
+/no-cache area=20
+that will be served with headers instructing caches not to store =
+representations=20
+from it.</P>
+<P>Whatever you are able to do, it is best to work with your largest =
+customers=20
+first on caching. Most of the savings (in bandwidth and in load on your =
+servers)=20
+will be realized from high-volume sites.</P>
+<H3>I=E2=80=99ve marked my pages as cacheable, but my browser keeps =
+requesting them on=20
+every request. How do I force the cache to keep representations of =
+them?</H3>
+<P>Caches aren=E2=80=99t required to keep a representation and reuse it; =
+they=E2=80=99re only=20
+required to <STRONG>not</STRONG> keep or use them under some conditions. =
+All=20
+caches make decisions about which representations to keep based upon =
+their size,=20
+type (e.g., image vs. html), or by how much space they have left to keep =
+local=20
+copies. Yours may not be considered worth keeping around, compared to =
+more=20
+popular or larger representations.</P>
+<P>Some caches do allow their administrators to prioritize what kinds of =
+
+representations are kept, and some allow representations to be =
+=E2=80=9Cpinned=E2=80=9D in=20
+cache, so that they=E2=80=99re always available.</P>
+<H2><A id=3DIMP-SERVER name=3DIMP-SERVER>Implementation Notes =E2=80=94 =
+Web Servers</A></H2>
+<P>Generally speaking, it=E2=80=99s best to use the latest version of =
+whatever Web=20
+server you=E2=80=99ve chosen to deploy. Not only will they likely =
+contain more=20
+cache-friendly features, new versions also usually have important =
+security and=20
+performance improvements.</P>
+<H3>Apache HTTP Server</H3>
+<P><A class=3Doffsite href=3D"http://www.apache.org/">Apache</A> uses =
+optional=20
+modules to include headers, including both Expires and Cache-Control. =
+Both=20
+modules are available in the 1.2 or greater distribution.</P>
+<P>The modules need to be built into Apache; although they are included =
+in the=20
+distribution, they are not turned on by default. To find out if the =
+modules are=20
+enabled in your server, find the httpd binary and run <TT>httpd -l</TT>; =
+this=20
+should print a list of the available modules (note that this only lists=20
+compiled-in modules; on later versions of Apache, use <TT>httpd -M</TT> =
+to=20
+include dynamically loaded modules as well). The modules we=E2=80=99re =
+looking for are=20
+mod_expires and mod_headers.</P>
+<UL>
+  <LI>If they aren=E2=80=99t available, and you have administrative =
+access, you can=20
+  recompile Apache to include them. This can be done either by =
+uncommenting the=20
+  appropriate lines in the Configuration file, or using the=20
+  <TT>-enable-module=3Dexpires</TT> and =
+<TT>-enable-module=3Dheaders</TT> arguments=20
+  to configure (1.3 or greater). Consult the INSTALL file found with the =
+Apache=20
+  distribution. </LI></UL>
+<P>Once you have an Apache with the appropriate modules, you can use =
+mod_expires=20
+to specify when representations should expire, either in .htaccess files =
+or in=20
+the server=E2=80=99s access.conf file. You can specify expiry from =
+either access or=20
+modification time, and apply it to a file type or as a default. See the =
+<A=20
+class=3Doffsite =
+href=3D"http://www.apache.org/docs/mod/mod_expires.html">module=20
+documentation</A> for more information, and speak with your local Apache =
+guru if=20
+you have trouble.</P>
+<P>To apply <CODE>Cache-Control</CODE> headers, you=E2=80=99ll need to =
+use the=20
+mod_headers module, which allows you to specify arbitrary HTTP headers =
+for a=20
+resource. See <A class=3Doffsite=20
+href=3D"http://www.apache.org/docs/mod/mod_headers.html">the mod_headers =
+
+documentation</A>.</P>
+<P>Here=E2=80=99s an example .htaccess file that demonstrates the use of =
+some=20
+headers.</P>
+<UL>
+  <LI>.htaccess files allow web publishers to use commands normally only =
+found=20
+  in configuration files. They affect the content of the directory =
+they=E2=80=99re in=20
+  and their subdirectories. Talk to your server administrator to find =
+out if=20
+  they=E2=80=99re enabled. </LI></UL><PRE class=3Dexample>### activate =
+mod_expires
+ExpiresActive On
+### Expire .gif's 1 month from when they're accessed
+ExpiresByType image/gif A2592000
+### Expire everything else 1 day from when it's last modified
+### (this uses the Alternative syntax)
+ExpiresDefault "modification plus 1 day"
+### Apply a Cache-Control header to index.html
+&lt;Files index.html&gt;
+Header append Cache-Control "public, must-revalidate"
+&lt;/Files&gt;</PRE>
+<UL>
+  <LI>Note that mod_expires automatically calculates and inserts a=20
+  <CODE>Cache-Control:max-age</CODE> header as appropriate. </LI></UL>
+<P>Apache 2=E2=80=99s configuration is very similar to that of 1.3; see =
+the 2.2 <A=20
+class=3Doffsite=20
+href=3D"http://httpd.apache.org/docs/2.2/mod/mod_expires.html">mod_expire=
+s</A> and=20
+<A class=3Doffsite=20
+href=3D"http://httpd.apache.org/docs/2.2/mod/mod_headers.html">mod_header=
+s</A>=20
+documentation for more information.</P>
+<H3>Microsoft IIS</H3>
+<P><A class=3Doffsite =
+href=3D"http://www.microsoft.com/">Microsoft</A>=E2=80=99s Internet=20
+Information Server makes it very easy to set headers in a somewhat =
+flexible way.=20
+Note that this is only possible in version 4 of the server, which will =
+run only=20
+on NT Server.</P>
+<P>To specify headers for an area of a site, select it in the =
+<TT>Administration=20
+Tools</TT> interface, and bring up its properties. After selecting the =
+<TT>HTTP=20
+Headers</TT> tab, you should see two interesting areas; <TT>Enable =
+Content=20
+Expiration</TT> and <TT>Custom HTTP headers</TT>. The first should be=20
+self-explanatory, and the second can be used to apply Cache-Control =
+headers.</P>
+<P>See the ASP section below for information about setting headers in =
+Active=20
+Server Pages. It is also possible to set headers from ISAPI modules; =
+refer to=20
+MSDN for details.</P>
+<H3>Netscape/iPlanet Enterprise Server</H3>
+<P>As of version 3.6, Enterprise Server does not provide any obvious way =
+to set=20
+Expires headers. However, it has supported HTTP 1.1 features since =
+version 3.0.=20
+This means that HTTP 1.1 caches (proxy and browser) will be able to take =
+
+advantage of Cache-Control settings you make.</P>
+<P>To use Cache-Control headers, choose <TT>Content Management | Cache =
+Control=20
+Directives</TT> in the administration server. Then, using the Resource =
+Picker,=20
+choose the directory where you want to set the headers. After setting =
+the=20
+headers, click =E2=80=98OK=E2=80=99. For more information, see the <A =
+class=3Doffsite=20
+href=3D"http://developer.netscape.com/docs/manuals/enterprise/admnunix/co=
+ntent.htm#1006282">NES=20
+manual</A>.</P>
+<H2><A id=3DIMP-SCRIPT name=3DIMP-SCRIPT>Implementation Notes =E2=80=94 =
+Server-Side=20
+Scripting</A></H2>
+<P class=3D"callout right">One thing to keep in mind is that it may be =
+easier to=20
+set HTTP headers with your Web server rather than in the scripting =
+language. Try=20
+both. </P>
+<P>Because the emphasis in server-side scripting is on dynamic content, =
+it=20
+doesn=E2=80=99t make for very cacheable pages, even when the content =
+could be cached. If=20
+your content changes often, but not on every page hit, consider setting =
+a=20
+Cache-Control: max-age header; most users access pages again in a =
+relatively=20
+short period of time. For instance, when users hit the =
+=E2=80=98back=E2=80=99 button, if there=20
+isn=E2=80=99t any validator or freshness information available, =
+they=E2=80=99ll have to wait=20
+until the page is re-downloaded from the server to see it.</P>
+<H3>CGI</H3>
+<P>CGI scripts are one of the most popular ways to generate content. You =
+can=20
+easily append HTTP response headers by adding them before you send the =
+body;=20
+Most CGI implementations already require you to do this for the=20
+<TT>Content-Type</TT> header. For instance, in Perl;</P><PRE =
+class=3Dexample>#!/usr/bin/perl
+print "Content-type: text/html\n";
+print "Expires: Thu, 29 Oct 1998 17:04:19 GMT\n";
+print "\n";
+### the content body follows...</PRE>
+<P>Since it=E2=80=99s all text, you can easily generate =
+<CODE>Expires</CODE> and other=20
+date-related headers with in-built functions. It=E2=80=99s even easier =
+if you use=20
+<CODE>Cache-Control: max-age</CODE>;</P><PRE><SPAN class=3Dexample>print =
+"Cache-Control: max-age=3D600\n";</SPAN></PRE>
+<P>This will make the script cacheable for 10 minutes after the request, =
+so that=20
+if the user hits the =E2=80=98back=E2=80=99 button, they won=E2=80=99t =
+be resubmitting the request.</P>
+<P>The CGI specification also makes request headers that the client =
+sends=20
+available in the environment of the script; each header has =
+=E2=80=98HTTP_=E2=80=99 appended to=20
+its name. So, if a client makes an <CODE>If-Modified-Since</CODE> =
+request, it=20
+may show up like this:</P><PRE><SPAN =
+class=3Dexample>HTTP_IF_MODIFIED_SINCE =3D Fri, 30 Oct 1998 14:19:41 GMT =
+</SPAN></PRE>
+<P>See also the <A =
+href=3D"http://www.mnot.net/cgi_buffer/">cgi_buffer</A>=20
+library, which automatically handles ETag generation and validation,=20
+<CODE>Content-Length</CODE> generation and gzip content-oding for Perl =
+and=20
+Python CGI scripts with a one-line include. The Python version can also =
+be used=20
+to wrap arbitrary CGI scripts with.</P>
+<H3>Server Side Includes</H3>
+<P>SSI (often used with the extension .shtml) is one of the first ways =
+that Web=20
+publishers were able to get dynamic content into pages. By using special =
+tags in=20
+the pages, a limited form of in-HTML scripting was available.</P>
+<P>Most implementations of SSI do not set validators, and as such are =
+not=20
+cacheable. However, Apache=E2=80=99s implementation does allow users to =
+specify which=20
+SSI files can be cached, by setting the group execute permissions on the =
+
+appropriate files, combined with the <CODE>XbitHack full</CODE> =
+directive. For=20
+more information, see the <A class=3Doffsite=20
+href=3D"http://www.apache.org/docs/mod/mod_include.html">mod_include=20
+documentation</A>.</P>
+<H3>PHP</H3>
+<P><A class=3Doffsite href=3D"http://www.php.net/">PHP</A> is a =
+server-side=20
+scripting language that, when built into the server, can be used to =
+embed=20
+scripts inside a page=E2=80=99s HTML, much like SSI, but with a far =
+larger number of=20
+options. PHP can be used as a CGI script on any Web server (Unix or =
+Windows), or=20
+as an Apache module.</P>
+<P>By default, representations processed by PHP are not assigned =
+validators, and=20
+are therefore uncacheable. However, developers can set HTTP headers by =
+using the=20
+<CODE>Header()</CODE> function.</P>
+<P>For example, this will create a Cache-Control header, as well as an =
+Expires=20
+header three days in the future:</P><PRE class=3Dexample>&lt;?php
+ Header("Cache-Control: must-revalidate");
+
+ $offset =3D 60 * 60 * 24 * 3;
+ $ExpStr =3D "Expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . =
+" GMT";
+ Header($ExpStr);
+?&gt;</PRE>
+<P>Remember that the <CODE>Header()</CODE> function MUST come before any =
+other=20
+output.</P>
+<P>As you can see, you=E2=80=99ll have to create the HTTP date for an=20
+<CODE>Expires</CODE> header by hand; PHP doesn=E2=80=99t provide a =
+function to do it for=20
+you (although recent versions have made it easier; see the <A =
+class=3Doffsite=20
+href=3D"http://php.net/date">PHP's date documentation</A>). Of course, =
+it=E2=80=99s easy=20
+to set a <CODE>Cache-Control: max-age header</CODE>, which is just as =
+good for=20
+most situations.</P>
+<P>For more information, see the <A class=3Doffsite=20
+href=3D"http://www.php.net/manual/function.header.php3">manual entry for =
+
+header</A>.</P>
+<P>See also the <A class=3Doffsite=20
+href=3D"http://www.mnot.net/cgi_buffer/">cgi_buffer</A> library, which=20
+automatically handles <CODE>ETag</CODE> generation and validation,=20
+<CODE>Content-Length</CODE> generation and gzip content-coding for PHP =
+scripts=20
+with a one-line include.</P>
+<H3>Cold Fusion</H3>
+<P><A class=3Doffsite =
+href=3D"http://www.macromedia.com/software/coldfusion/">Cold=20
+Fusion</A>, by <A class=3Doffsite =
+href=3D"http://www.macromedia.com/">Macromedia</A>=20
+is a commercial server-side scripting engine, with support for several =
+Web=20
+servers on Windows, Linux and several flavors of Unix.</P>
+<P>Cold Fusion makes setting arbitrary HTTP headers relatively easy, =
+with the=20
+<TT><A class=3Doffsite=20
+href=3D"http://livedocs.macromedia.com/coldfusion/7/htmldocs/00000270.htm=
+">CFHEADER</A></TT>=20
+tag. Unfortunately, their example for setting an <CODE>Expires</CODE> =
+header, as=20
+below, is a bit misleading.</P><PRE><SPAN class=3Dexample>&lt;CFHEADER =
+NAME=3D"Expires" VALUE=3D"#Now()#"&gt;</SPAN></PRE>
+<P>It doesn=E2=80=99t work like you might think, because the time (in =
+this case, when=20
+the request is made) doesn=E2=80=99t get converted to a HTTP-valid date; =
+instead, it=20
+just gets printed as a representation of Cold Fusion=E2=80=99s Date/Time =
+object. Most=20
+clients will either ignore such a value, or convert it to a default, =
+like=20
+January 1, 1970.</P>
+<P>However, Cold Fusion does provide a date formatting function that =
+will do the=20
+job; <TT><A class=3Doffsite=20
+href=3D"http://livedocs.macromedia.com/coldfusion/7/htmldocs/00000483.htm=
+">GetHttpTimeSTring</A></TT>.=20
+In combination with <TT><A class=3Doffsite=20
+href=3D"http://livedocs.macromedia.com/coldfusion/7/htmldocs/00000437.htm=
+">DateAdd</A></TT>,=20
+it=E2=80=99s easy to set Expires dates; here, we set a header to declare =
+that=20
+representations of the page expire in one month;</P><PRE><SPAN =
+class=3Dexample>&lt;cfheader name=3D"Expires" =
+value=3D"#GetHttpTimeString(DateAdd('m', 1, Now()))#"&gt;</SPAN></PRE>
+<P>You can also use the <CODE>CFHEADER</CODE> tag to set =
+<CODE>Cache-Control:=20
+max-age</CODE> and other headers.</P>
+<P>Remember that Web server headers are passed through in some =
+deployments of=20
+Cold Fusion (such as CGI); check yours to determine whether you can use =
+this to=20
+your advantage, by setting headers on the server instead of in Cold =
+Fusion.</P>
+<H3>ASP and ASP.NET</H3>
+<P class=3D"callout right">When setting HTTP headers from ASPs, make =
+sure you=20
+either place the Response method calls before any HTML generation, or =
+use=20
+<CODE>Response.Buffer</CODE> to buffer the output. Also, note that some =
+versions=20
+of IIS set a <CODE>Cache-Control: private</CODE> header on ASPs by =
+default, and=20
+must be declared public to be cacheable by shared caches.</P>
+<P>Active Server Pages, built into IIS and also available for other Web =
+servers,=20
+also allows you to set HTTP headers. For instance, to set an expiry =
+time, you=20
+can use the properties of the <CODE>Response</CODE> =
+object;</P><PRE><SPAN class=3Dexample>&lt;% Response.Expires=3D1440 =
+%&gt;</SPAN></PRE>
+<P>specifying the number of minutes from the request to expire the=20
+representation. Likewise, absolute expiry time can be set like this =
+(make sure=20
+you format HTTP date correctly):</P><PRE><SPAN class=3Dexample>&lt;% =
+Response.ExpiresAbsolute=3D#May 31,1996 13:30:15 GMT# %&gt;</SPAN></PRE>
+<P><CODE>Cache-Control</CODE> headers can be added like =
+this:</P><PRE><SPAN class=3Dexample>&lt;% =
+Response.CacheControl=3D"public" %&gt;</SPAN></PRE>
+<P>In ASP.NET, <CODE>Response.Expires</CODE> is deprecated; the proper =
+way to=20
+set cache-related headers is with <CODE>Response.Cache</CODE>;</P><PRE =
+class=3Dexample>Response.Cache.SetExpires ( DateTime.Now.AddMinutes ( 60 =
+) ) ;
+Response.Cache.SetCacheability ( HttpCacheability.Public ) ;</PRE>
+<P>See the <A class=3Doffsite=20
+href=3D"http://msdn.microsoft.com/library/default.asp?url=3D/library/en-u=
+s/cpguide/html/cpconaspoutputcache.asp">MSDN=20
+documentation</A> for more information.</P>
+<H2><A id=3DREF name=3DREF>References and Further Information</A></H2>
+<H3><A class=3Doffsite href=3D"http://www.ietf.org/rfc/rfc2616.txt">HTTP =
+1.1=20
+Specification</A></H3>
+<P>The HTTP 1.1 spec has many extensions for making pages cacheable, and =
+is the=20
+authoritative guide to implementing the protocol. See sections 13, 14.9, =
+14.21,=20
+and 14.25.</P>
+<H3><A class=3Doffsite =
+href=3D"http://www.web-caching.com/">Web-Caching.com</A></H3>
+<P>An excellent introduction to caching concepts, with links to other =
+online=20
+resources.</P>
+<H3><A class=3Doffsite =
+href=3D"http://www.goldmark.org/netrants/webstats/">On=20
+Interpreting Access Statistics</A></H3>
+<P>Jeff Goldberg=E2=80=99s informative rant on why you shouldn=E2=80=99t =
+rely on access=20
+statistics and hit counters.</P>
+<H3><A href=3D"http://www.mnot.net/cacheability/">Cacheability =
+Engine</A></H3>
+<P>Examines Web pages to determine how they will interact with Web =
+caches, the=20
+Engine is a good debugging tool, and a companion to this tutorial.</P>
+<H3><A href=3D"http://www.mnot.net/cgi_buffer/">cgi_buffer =
+Library</A></H3>
+<P>One-line include in Perl CGI, Python CGI and PHP scripts =
+automatically=20
+handles ETag generation and validation, Content-Length generation and =
+gzip=20
+Content-Encoding =E2=80=94 correctly. The Python version can also be =
+used as a wrapper=20
+around arbitrary CGI scripts.</P>
+<H2><A id=3DABOUT name=3DABOUT>About This Document</A></H2>
+<P>This document is Copyright =C2=A9 1998-2006 Mark Nottingham &lt;<A=20
+href=3D"mailto:mnot@pobox.com">mnot@pobox.com</A>&gt;. <!-- Creative =
+Commons License -->This work is licensed under a <A class=3Doffsite=20
+href=3D"http://creativecommons.org/licenses/by-nd-nc/2.0/">Creative =
+Commons=20
+License</A>. <!-- /Creative Commons License --></P><!--=0A=
+=0A=
+<rdf:RDF xmlns=3D"http://web.resource.org/cc/"=0A=
+    xmlns:dc=3D"http://purl.org/dc/elements/1.1/"=0A=
+    xmlns:rdf=3D"http://www.w3.org/1999/02/22-rdf-syntax-ns#">=0A=
+<Work rdf:about=3D"">=0A=
+   <dc:type rdf:resource=3D"http://purl.org/dc/dcmitype/Text" />=0A=
+   <license =
+rdf:resource=3D"http://creativecommons.org/licenses/by-nd-nc/2.0/" />=0A=
+</Work>=0A=
+=0A=
+<License rdf:about=3D"http://creativecommons.org/licenses/by-nd-nc/2.0/">=0A=
+   <permits rdf:resource=3D"http://web.resource.org/cc/Reproduction" />=0A=
+   <permits rdf:resource=3D"http://web.resource.org/cc/Distribution" />=0A=
+   <requires rdf:resource=3D"http://web.resource.org/cc/Notice" />=0A=
+   <requires rdf:resource=3D"http://web.resource.org/cc/Attribution" />=0A=
+   <prohibits rdf:resource=3D"http://web.resource.org/cc/CommercialUse" =
+/>=0A=
+</License>=0A=
+=0A=
+</rdf:RDF>=0A=
+=0A=
+-->
+<P>If you do mirror this document, please send e-mail to the address =
+above, so=20
+that you can be informed of updates.</P>
+<P>All trademarks within are property of their respective holders.</P>
+<P>Although the author believes the contents to be accurate at the time =
+of=20
+publication, no liability is assumed for them, their application or any=20
+consequences thereof. If any misrepresentations, errors or other need =
+for=20
+clarification is found, please contact the author immediately.</P>
+<P>The latest revision of this document can always be obtained from <A=20
+href=3D"http://www.mnot.net/cache_docs/">http://www.mnot.net/cache_docs/<=
+/A></P>
+<P>Translations are available in: <A=20
+title=3D"Ke=C5=A1ovac=C3=AD n=C3=A1vod pro autory webu a webmastery"=20
+href=3D"http://www.jakpsatweb.cz/clanky/caching-tutorial-czech-translatio=
+n.html"=20
+hreflang=3Dcz>Czech</A> and <A title=3D"Un tutoriel de la mise en cache" =
+
+href=3D"http://www.mnot.net/cache_docs/index.fr.html" =
+hreflang=3Dfr>French</A>.</P>
+<P class=3Dversion>Version 1.83 =E2=80=94 January 20, 2009</P>
+<P class=3Dbutton><A =
+href=3D"http://creativecommons.org/licenses/by-nc-nd/2.0/"><IMG=20
+alt=3D"Creative Commons License"=20
+src=3D"http://creativecommons.org/images/public/somerights.gif"=20
+border=3D0></A></P><hx:include=20
+src=3D"/templates/footer.html"></hx:include></BODY></HTML>
+
+------=_NextPart_000_0000_01C9A369.AD20A0A0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://creativecommons.org/images/public/somerights.gif
+
+R0lGODlhWAAfAMQAAGl6afT29HOEc+rs6n6Nft/j356qnr/Gv7S9tE5fTsnQyZSglG6CbqmzqdTZ
+1EdVR4mXif///wAAAF5xXgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAA
+AAAALAAAAABYAB8AAAX/oCSOZGmeaKqubOu+cCybUR1J9p3beC3muJ7vFuQBhbqhUTn8CZ/OEVEX
+pUqd1qqWNA1Gv93w1QsUk6G8Yg9ZTbuZybjW+MXaz8Q5fjs2c717altldHg+e2WDblhwT2GHS3kz
+k5SVlpeYlDubnJ2en6ChopwME6anqKmqq6ytrq+wrAmlsbW2rg0Nt7azu76xEDWmwr+vva4CuQ0G
+AqsCBg0EEwAQBADSANDSps8NEKbBEeAQAuTjAAAL3r/HqwQONQUDNQ7NpwY5CMEBAQ4EATYOTAhX
+IEKBBTnC4XMwgUCEAALm0fPVLhWEAAMMnMo2IMA2ATW8FThA0MA8CADg/xFo4GDBBHjqaqCsAUBY
+gwgHFERoAOBABI23Kp76dwCAKgAFPE5YiCpYgYYRBuSCp2ulA4AQwg0TpxNC15ANfDIMSitVgQJG
+VwEYwPDmWHARGO5zQNdBAwRRD5zUOkEYvgYY+8ati2CX0AkIvzW0V84UQgIIB4wLxhBkAKMra0Yw
+WjArMWE15xUG2KynPV5lTyGQjLQjAnzymgXQVZAtRoRjdRZAAHABwAM+I8yM61DcBJ0RpN2UOk8X
+WVV0l24WICBA4W0OBPYEqEDAu8LTVsd1CaGgAgQtJwBOHh2xAwWnGswrAPR5qug3T+1E9d4UNXPc
+ZGVPVv8ZJeBAKBGI4P9pWSlWYFanlIPSKocdUFkACigAXAGANSPVUgCFNAFeNuhSQ4hnnQiSQfEU
+9JB3LkZFQDghtpWDc6gchk8zK/EEQC7fgLRAdTuV5wBsC/gmXA0HKKmAkjdFgICTUMJD0nLh5FID
+SANkdcA2OabmH4auKBCAdE9N89JPptxE4jfwwLkTTWvKSeIpzX0WwYocKpbKYeqxuQo+LrnFn3Bt
+RoCcnHJGaUqca8Jj3JqOCraURFKqAugEPiGQln86gReZKTP65JypMtVJKTGQUkUnAADhY5ww32RD
+TJitrGcXSw/VN0FBu/ETTk4vptrqnMYde1dU8inKl0zMiqWpmKkkU5c9XZ+CWoMC0pS3rTR0SYOe
+uEe2N+6IR6o3z2zXtBedAS4WNW0x9NZrbwIJPKDvvvz26++/AAcs8MAEA5xACAA7
+
+------=_NextPart_000_0000_01C9A369.AD20A0A0
+Content-Type: text/css;
+	charset="gb2312"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.mnot.net/style.css
+
+BODY {
+	MAX-WIDTH: 900px; MARGIN: 72px 96px; FONT: 0.9em/1.3em Helvetica Neue, =
+Geneva, sans-serif; COLOR: #333; BACKGROUND-COLOR: #fefefe
+}
+
+@media Unknown   =20
+{
+BODY {
+	MARGIN: 2em 1em
+}
+    }
+P {
+	MARGIN-TOP: 0.5em
+}
+P {
+	MAX-WIDTH: 600px
+}
+LI {
+	MAX-WIDTH: 600px
+}
+BLOCKQUOTE {
+	MAX-WIDTH: 600px
+}
+PRE {
+	MAX-WIDTH: 600px
+}
+DT {
+	MAX-WIDTH: 600px
+}
+DD {
+	MAX-WIDTH: 600px
+}
+PRE {
+	FONT-FAMILY: helvetica, sans-serif
+}
+A:link {
+	COLOR: #303b97; BACKGROUND-COLOR: transparent; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #303b97; BACKGROUND-COLOR: transparent; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #303b97; BACKGROUND-COLOR: transparent; TEXT-DECORATION: none
+}
+A:active {
+	BACKGROUND-COLOR: #fd0
+}
+A.offsite:hover {
+	BACKGROUND-COLOR: #d0dbe7; TEXT-DECORATION: none; BORDER-BOTTOM-STYLE: =
+none
+}
+A.offsite:hover:unknown {
+	COLOR: white; content: " ?"
+}
+A IMG {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: =
+none; BORDER-BOTTOM-STYLE: none
+}
+A[type=3D'application/pdf']:hover:unknown {
+	content: " [pdf]"
+}
+[id]:hover:unknown {
+	FONT-SIZE: 50%; COLOR: #ccc; TEXT-DECORATION: none; content: " #" =
+attr(id) " "
+}
+H1 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: normal; =
+PADDING-BOTTOM: 0px; MARGIN: 1em 0px 0px; LINE-HEIGHT: 1.15em; =
+PADDING-TOP: 0px; LETTER-SPACING: -0.05em; BACKGROUND-COLOR: =
+transparent; page-break-inside: avoid
+}
+H2 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: normal; =
+PADDING-BOTTOM: 0px; MARGIN: 1em 0px 0px; LINE-HEIGHT: 1.15em; =
+PADDING-TOP: 0px; LETTER-SPACING: -0.05em; BACKGROUND-COLOR: =
+transparent; page-break-inside: avoid
+}
+H3 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: normal; =
+PADDING-BOTTOM: 0px; MARGIN: 1em 0px 0px; LINE-HEIGHT: 1.15em; =
+PADDING-TOP: 0px; LETTER-SPACING: -0.05em; BACKGROUND-COLOR: =
+transparent; page-break-inside: avoid
+}
+H4 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: normal; =
+PADDING-BOTTOM: 0px; MARGIN: 1em 0px 0px; LINE-HEIGHT: 1.15em; =
+PADDING-TOP: 0px; LETTER-SPACING: -0.05em; BACKGROUND-COLOR: =
+transparent; page-break-inside: avoid
+}
+H5 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: normal; =
+PADDING-BOTTOM: 0px; MARGIN: 1em 0px 0px; LINE-HEIGHT: 1.15em; =
+PADDING-TOP: 0px; LETTER-SPACING: -0.05em; BACKGROUND-COLOR: =
+transparent; page-break-inside: avoid
+}
+H1 {
+	FONT-SIZE: 28px
+}
+H2 {
+	FONT-SIZE: 28px
+}
+H3 {
+	FONT-SIZE: 20px
+}
+H4 {
+	FONT-SIZE: 16px
+}
+H5 {
+	FONT-SIZE: 14px
+}
+H1 .accent {
+	COLOR: #864
+}
+H2 {
+	COLOR: #864
+}
+H3 .accent {
+	COLOR: #864
+}
+H4 {
+	COLOR: #864
+}
+H5 .accent {
+	COLOR: #864
+}
+H1 {
+	COLOR: #369
+}
+H2 .accent {
+	COLOR: #369
+}
+H3 {
+	COLOR: #369
+}
+H4 .accent {
+	COLOR: #369
+}
+H5 {
+	COLOR: #369
+}
+H1 {
+	MARGIN-TOP: 0.5em; MARGIN-BOTTOM: 0px; PADDING-BOTTOM: 4px; =
+BORDER-BOTTOM: #333 1px solid; BACKGROUND-COLOR: transparent
+}
+H1 + .subtitle {
+	MARGIN-TOP: 6px; FONT-SIZE: 90%
+}
+H1 + .navtop {
+	MAX-WIDTH: 900px; MARGIN: 0.2em 0px 0px; POSITION: relative; TOP: =
+-4.9em; TEXT-ALIGN: right
+}
+H1 + .subtitle + .navtop {
+	MAX-WIDTH: 900px; MARGIN: 0.2em 0px 0px; POSITION: relative; TOP: =
+-4.9em; TEXT-ALIGN: right
+}
+H1 + .navtop {
+	TOP: -2em
+}
+.navtop + .date {
+	FONT-SIZE: 90%; MAX-WIDTH: 900px; POSITION: relative; TOP: -4.25em; =
+TEXT-ALIGN: right
+}
+H1 + P {
+	MARGIN-TOP: 1.5em
+}
+H4 + .navtop {
+	MARGIN: 0px; POSITION: relative; TOP: -1.5em; TEXT-ALIGN: right
+}
+TABLE.grid TH {
+	PADDING-RIGHT: 6px; PADDING-LEFT: 6px; FONT-WEIGHT: normal; =
+PADDING-BOTTOM: 3px; COLOR: white; PADDING-TOP: 3px; BACKGROUND-COLOR: =
+#333; TEXT-ALIGN: right
+}
+TABLE.grid TD {
+	PADDING-RIGHT: 6px; PADDING-LEFT: 6px; PADDING-BOTTOM: 3px; =
+PADDING-TOP: 3px; BACKGROUND-COLOR: #d0dbe7
+}
+UL {
+	PADDING-LEFT: 1.5em; MARGIN: 0px 0px 0.5em 0.5em; LIST-STYLE-TYPE: disc
+}
+DT {
+	FONT-WEIGHT: bold
+}
+DD {
+	PADDING-BOTTOM: 0.5em
+}
+
+@media Screen   =20
+{
+UL {
+	PADDING-LEFT: 0em; LIST-STYLE-TYPE: none
+}
+UL LI:unknown {
+	FONT-SIZE: 0.9em; COLOR: #740; content: =A3=AA?
+}
+    }
+UL.inline {
+	LIST-STYLE-TYPE: none
+}
+UL.inline LI {
+	DISPLAY: inline; MARGIN-RIGHT: 1em; WHITE-SPACE: nowrap
+}
+UL.inline LI:unknown {
+	content: ''
+}
+
+@media Screen   =20
+{
+STRIKE {
+	TEXT-DECORATION: none
+}
+STRIKE:unknown {
+	content: ^H^H^H^H^H
+}
+    }
+ACRONYM:hover {
+	CURSOR: help
+}
+abbrev:hover {
+	CURSOR: help
+}
+abbrev[title] {
+	CURSOR: help; BORDER-BOTTOM: thin dotted
+}
+ACRONYM[title] {
+	CURSOR: help; BORDER-BOTTOM: thin dotted
+}
+SPAN[title] {
+	CURSOR: help; BORDER-BOTTOM: thin dotted
+}
+INPUT[type=3D'text'] {
+	BORDER-RIGHT: black 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: black =
+1px solid; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; MARGIN: 2px 1px; =
+BORDER-LEFT: black 1px solid; PADDING-TOP: 1px; BORDER-BOTTOM: black 1px =
+solid
+}
+TEXTAREA {
+	BORDER-RIGHT: black 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: black =
+1px solid; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; MARGIN: 2px 1px; =
+BORDER-LEFT: black 1px solid; PADDING-TOP: 1px; BORDER-BOTTOM: black 1px =
+solid
+}
+SELECT {
+	BORDER-RIGHT: black 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: black =
+1px solid; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; MARGIN: 2px 1px; =
+BORDER-LEFT: black 1px solid; PADDING-TOP: 1px; BORDER-BOTTOM: black 1px =
+solid
+}
+HR {
+	PADDING-RIGHT: 1px; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; =
+BORDER-TOP-STYLE: none; PADDING-TOP: 1px; BORDER-RIGHT-STYLE: none; =
+BORDER-LEFT-STYLE: none; BACKGROUND-COLOR: #ddd; BORDER-BOTTOM-STYLE: =
+none
+}
+H1 + PRE HR {
+	VISIBILITY: hidden
+}
+BLOCKQUOTE {
+	BORDER-RIGHT: #d0dbe7 0px solid; BORDER-TOP: #d0dbe7 0px solid; =
+PADDING-LEFT: 0.5em; BORDER-LEFT: #d0dbe7 0.25em solid; BORDER-BOTTOM: =
+#d0dbe7 0px solid
+}
+Q {
+	quotes: '=A1=B0' '=A1=B1' '=A1=AE' '=A1=AF'
+}
+Q:unknown {
+	FONT-SIZE: 1.5em; content: open-quote
+}
+Q:unknown {
+	FONT-SIZE: 1.5em; content: close-quote
+}
+.intro {
+	FONT-SIZE: 1.1em; LINE-HEIGHT: 1.35em; FONT-FAMILY: Helvetica Neue, =
+Geneva, sans-serif; page-break-inside: avoid
+}
+.intro A {
+	FONT-WEIGHT: bolder
+}
+.intro + H2 {
+	MARGIN-TOP: 2em
+}
+.intro + H3 {
+	MARGIN-TOP: 2em
+}
+.intro + H4 {
+	MARGIN-TOP: 2em
+}
+.callout {
+	PADDING-RIGHT: 0em; PADDING-LEFT: 1em; PADDING-BOTTOM: 0em; FONT: =
+1.3em/1.3em Garamond, "Times New Roman", Times, serif; BORDER-LEFT: #a30 =
+0.25em solid; WIDTH: 250px; PADDING-TOP: 0em; page-break-inside: avoid
+}
+.left {
+	FLOAT: left; MARGIN: 0.5em 2em 0.5em 0em
+}
+.right {
+	FLOAT: right; MARGIN: 0.5em 0em 0.5em 2em
+}
+.ad1 {
+	MARGIN: 1em 0px
+}
+.banner {
+	PADDING-RIGHT: 1em; PADDING-LEFT: 1em; PADDING-BOTTOM: 1em; MARGIN: 2em =
+0px; BORDER-LEFT: #a30 1em solid; PADDING-TOP: 1em; BACKGROUND-COLOR: =
+#ececda
+}
+.footnote {
+	MARGIN-TOP: 0px; FONT-SIZE: 0.9em; TEXT-ALIGN: right
+}
+.button {
+	TEXT-ALIGN: right
+}
+.textbutton {
+	BORDER-RIGHT: #630 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #fc9 1px =
+solid; PADDING-LEFT: 3px; BACKGROUND: #f60; PADDING-BOTTOM: 0px; MARGIN: =
+0px; FONT: bold 10px verdana,sans-serif; BORDER-LEFT: #f96 1px solid; =
+COLOR: #fff; PADDING-TOP: 0px; BORDER-BOTTOM: #330 1px solid; =
+TEXT-DECORATION: none
+}
+A.textbutton:link {
+	BORDER-RIGHT: #630 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #fc9 1px =
+solid; PADDING-LEFT: 3px; BACKGROUND: #f60; PADDING-BOTTOM: 0px; MARGIN: =
+0px; FONT: bold 10px verdana,sans-serif; BORDER-LEFT: #f96 1px solid; =
+COLOR: #fff; PADDING-TOP: 0px; BORDER-BOTTOM: #330 1px solid; =
+TEXT-DECORATION: none
+}
+A.textbutton:visited {
+	BORDER-RIGHT: #630 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #fc9 1px =
+solid; PADDING-LEFT: 3px; BACKGROUND: #f60; PADDING-BOTTOM: 0px; MARGIN: =
+0px; FONT: bold 10px verdana,sans-serif; BORDER-LEFT: #f96 1px solid; =
+COLOR: #fff; PADDING-TOP: 0px; BORDER-BOTTOM: #330 1px solid; =
+TEXT-DECORATION: none
+}
+A.textbutton:active {
+	BORDER-RIGHT: #630 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #fc9 1px =
+solid; PADDING-LEFT: 3px; BACKGROUND: #f60; PADDING-BOTTOM: 0px; MARGIN: =
+0px; FONT: bold 10px verdana,sans-serif; BORDER-LEFT: #f96 1px solid; =
+COLOR: #fff; PADDING-TOP: 0px; BORDER-BOTTOM: #330 1px solid; =
+TEXT-DECORATION: none
+}
+A.textbutton:hover {
+	BORDER-RIGHT: #630 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #fc9 1px =
+solid; PADDING-LEFT: 3px; BACKGROUND: #f60; PADDING-BOTTOM: 0px; MARGIN: =
+0px; FONT: bold 10px verdana,sans-serif; BORDER-LEFT: #f96 1px solid; =
+COLOR: #fff; PADDING-TOP: 0px; BORDER-BOTTOM: #330 1px solid; =
+TEXT-DECORATION: none
+}
+P.navtop {
+	FONT-SIZE: 0.9em; FONT-FAMILY: arial, helvetica, sans-serif
+}
+P.navigation {
+	CLEAR: both; PADDING-RIGHT: 2em; BORDER-TOP: #999 1px solid; =
+PADDING-LEFT: 4em; FONT-WEIGHT: bold; FONT-SIZE: 0.9em; RIGHT: 0px; =
+LEFT: 0px; MAX-WIDTH: 900px; PADDING-BOTTOM: 0.25em; MARGIN: 2em 0px =
+0px; COLOR: #333; BOTTOM: 0px; PADDING-TOP: 0.25em; FONT-FAMILY: arial, =
+helvetica, sans-serif; POSITION: fixed; BACKGROUND-COLOR: white; =
+TEXT-ALIGN: right; opacity: .9
+}
+P.navigation A {
+	MARGIN-LEFT: 1em
+}
+.detail {
+	FONT-SIZE: 0.9em; page-break-inside: avoid
+}
+.warning {
+	BORDER-RIGHT: #c30 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #c30 1px =
+solid; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; BORDER-LEFT: #c30 1px =
+solid; PADDING-TOP: 3px; BORDER-BOTTOM: #c30 1px solid; =
+BACKGROUND-COLOR: #f60; TEXT-ALIGN: center
+}
+.author {
+	FONT-SIZE: 0.9em; MARGIN: 0pt; FONT-STYLE: italic; TEXT-ALIGN: right
+}
+.version {
+	FONT-SIZE: 0.9em; MARGIN: 0pt; COLOR: #999; PADDING-TOP: 12px; =
+FONT-STYLE: italic; TEXT-ALIGN: right
+}
+.date {
+	MARGIN: 0.25em 0px 0px; TEXT-ALIGN: right
+}
+.date + * {
+	MARGIN-TOP: 0.1em
+}
+.example {
+	FONT-SIZE: 0.9em; BACKGROUND: #ececda; MARGIN-LEFT: 2em; OVERFLOW: =
+auto; MARGIN-RIGHT: 2em; FONT-FAMILY: monospace
+}
+.spec {
+	FONT-SIZE: 0.9em; MARGIN-LEFT: 1.2em; OVERFLOW: auto; MARGIN-RIGHT: =
+1.2em; FONT-FAMILY: monospace
+}
+.story + .story {
+	MARGIN-TOP: 2em
+}
+.image {
+	TEXT-ALIGN: center
+}
+.image IMG {
+	BORDER-RIGHT: #ddd 1px solid; PADDING-RIGHT: 1.5em; BORDER-TOP: #ddd =
+1px solid; PADDING-LEFT: 1.5em; PADDING-BOTTOM: 2em; MARGIN: 0.25em 0px; =
+BORDER-LEFT: #ddd 1px solid; PADDING-TOP: 1.5em; BORDER-BOTTOM: #ddd 1px =
+solid; BACKGROUND-COLOR: white
+}
+.flickrimg {
+	BORDER-RIGHT: #ddd 1px solid; PADDING-RIGHT: 1.5em; BORDER-TOP: #ddd =
+1px solid; PADDING-LEFT: 1.5em; PADDING-BOTTOM: 2em; MARGIN: 0.25em 0px; =
+BORDER-LEFT: #ddd 1px solid; PADDING-TOP: 1.5em; BORDER-BOTTOM: #ddd 1px =
+solid; BACKGROUND-COLOR: white
+}
+.flickr_badge_image {
+	BORDER-RIGHT: #ddd 1px solid; PADDING-RIGHT: 1.5em; BORDER-TOP: #ddd =
+1px solid; PADDING-LEFT: 1.5em; PADDING-BOTTOM: 2em; MARGIN: 0.25em 0px; =
+BORDER-LEFT: #ddd 1px solid; PADDING-TOP: 1.5em; BORDER-BOTTOM: #ddd 1px =
+solid; BACKGROUND-COLOR: white
+}
+.galimg IMG {
+	BORDER-RIGHT: #eee 2px solid; PADDING-RIGHT: 1em; BORDER-TOP: #eee 2px =
+solid; PADDING-LEFT: 1em; PADDING-BOTTOM: 1em; BORDER-LEFT: #eee 2px =
+solid; PADDING-TOP: 1em; BORDER-BOTTOM: #eee 2px solid; =
+BACKGROUND-COLOR: white
+}
+.galimg A:hover IMG {
+	BORDER-RIGHT: blue 2px inset; BORDER-TOP: blue 2px inset; BORDER-LEFT: =
+blue 2px inset; BORDER-BOTTOM: blue 2px inset
+}
+.galimg A:hover {
+	BACKGROUND-COLOR: transparent
+}
+.galimg:hover:unknown {
+	DISPLAY: none
+}
+DIV:hover:unknown {
+	DISPLAY: none
+}
+
+@media Print   =20
+{
+#main {
+	WIDTH: 100%
+}
+#sidebar {
+	DISPLAY: none
+}
+BODY {
+	MAX-WIDTH: 100%; MARGIN: 18pt 48pt 18pt 32pt; FONT: 8.5pt/10.5pt =
+Palatino Linotype, palatino, Book Antiqua, serif
+}
+FORM {
+	DISPLAY: none
+}
+.navtop {
+	DISPLAY: none
+}
+.navigation {
+	DISPLAY: none
+}
+A.textbutton {
+	DISPLAY: none
+}
+.imgnav {
+	DISPLAY: none
+}
+.ad1 {
+	DISPLAY: none
+}
+
+}
+
+------=_NextPart_000_0000_01C9A369.AD20A0A0
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.mnot.net/templates/hinclude.js
+
+/*=0A=
+hinclude.js -- HTML Includes (version 0.9)=0A=
+=0A=
+Copyright (c) 2005-2006 Mark Nottingham <mnot@pobox.com>=0A=
+=0A=
+Permission is hereby granted, free of charge, to any person obtaining a =
+copy=0A=
+of this software and associated documentation files (the "Software"), to =
+deal=0A=
+in the Software without restriction, including without limitation the =
+rights=0A=
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell=0A=
+copies of the Software, and to permit persons to whom the Software is=0A=
+furnished to do so, subject to the following conditions:=0A=
+=0A=
+The above copyright notice and this permission notice shall be included =
+in all=0A=
+copies or substantial portions of the Software.=0A=
+=0A=
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS =
+OR=0A=
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,=0A=
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL =
+THE=0A=
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER=0A=
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING =
+FROM,=0A=
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS =
+IN THE=0A=
+SOFTWARE.=0A=
+=0A=
+-------------------------------------------------------------------------=
+-------=0A=
+=0A=
+See http://www.mnot.net/javascript/hinclude/ for documentation.=0A=
+=0A=
+TODO:=0A=
+ - check navigator property to see if browser will handle this without =
+javascript=0A=
+=0A=
+-------------------------------------------------------------------------=
+-------=0A=
+*/=0A=
+=0A=
+var hinclude =3D {=0A=
+    set_content_async: function (element, req) {=0A=
+        if (req.readyState =3D=3D 4) {=0A=
+            if (req.status =3D=3D 200 | req.status =3D=3D 304) {=0A=
+                element.innerHTML =3D req.responseText;=0A=
+            }=0A=
+            element.className =3D "include_" + req.status;=0A=
+        }=0A=
+    },=0A=
+=0A=
+    buffer: new Array(),=0A=
+    set_content_buffered: function (element, req) {=0A=
+        if (req.readyState =3D=3D 4) {=0A=
+            hinclude.buffer.push(new Array(element, req));=0A=
+            hinclude.outstanding--;=0A=
+            if (hinclude.outstanding =3D=3D 0) {=0A=
+                hinclude.show_buffered_content();=0A=
+            }=0A=
+        }=0A=
+    },=0A=
+    show_buffered_content: function () {=0A=
+        while (hinclude.buffer.length > 0) {=0A=
+           var include =3D hinclude.buffer.pop();=0A=
+           if (include[1].status =3D=3D 200 | include[1].status =3D=3D =
+304) {=0A=
+               include[0].innerHTML =3D include[1].responseText;=0A=
+           }=0A=
+           include[0].className =3D "include_" + include[1].status;=0A=
+        }=0A=
+    },=0A=
+=0A=
+    outstanding: 0,=0A=
+    run: function () {=0A=
+        var mode =3D this.get_meta("include_mode", "buffered"); =0A=
+        var callback =3D function(element, req) {};=0A=
+        var includes =3D document.getElementsByTagName("hx:include");=0A=
+        if (includes.length =3D=3D 0) { // remove ns for IE=0A=
+            includes =3D document.getElementsByTagName("include");=0A=
+        }=0A=
+        if (mode =3D=3D "async") {=0A=
+            callback =3D this.set_content_async;=0A=
+        } else if (mode =3D=3D "buffered") {=0A=
+            callback =3D this.set_content_buffered;=0A=
+            var timeout =3D this.get_meta("include_timeout", 2.5) * 1000;=0A=
+            setTimeout("hinclude.show_buffered_content()", timeout);=0A=
+        }=0A=
+        for (var i=3D0; i < includes.length; i++) {=0A=
+            this.include(includes[i], includes[i].getAttribute("src"), =
+callback);=0A=
+        }=0A=
+    },=0A=
+    =0A=
+    include: function (element, url, incl_cb) {=0A=
+        scheme =3D url.substring(0,url.indexOf(":"));=0A=
+        if (scheme.toLowerCase() =3D=3D "data") { // just text/plain for =
+now=0A=
+           data =3D unescape(url.substring(url.indexOf(",") + 1, =
+url.length));=0A=
+           element.innerHTML =3D data;=0A=
+        } else {=0A=
+            var req =3D false;=0A=
+            if(window.XMLHttpRequest) {=0A=
+                try {=0A=
+                    req =3D new XMLHttpRequest();=0A=
+                } catch(e) {=0A=
+                    req =3D false;=0A=
+                }=0A=
+            } else if(window.ActiveXObject) {=0A=
+                try {=0A=
+                    req =3D new ActiveXObject("Microsoft.XMLHTTP");=0A=
+                } catch(e) {=0A=
+                    req =3D false;=0A=
+                }=0A=
+            }=0A=
+            if(req) {=0A=
+                this.outstanding++;=0A=
+                req.onreadystatechange =3D function() {=0A=
+                    incl_cb(element, req);=0A=
+                };=0A=
+                try {=0A=
+                    req.open("GET", url, true);=0A=
+                    req.send("");=0A=
+                } catch (e) {=0A=
+                    this.outstanding--;=0A=
+                    alert("Include error: " + url + " (" + e + ")");=0A=
+                }=0A=
+            }    =0A=
+        }=0A=
+    },=0A=
+=0A=
+    get_meta: function (name, value_default) {=0A=
+        var metas =3D document.getElementsByTagName("meta");=0A=
+        for (var m=3D0; m < metas.length; m++) {=0A=
+            var meta_name =3D metas[m].getAttribute("name");=0A=
+            if (meta_name =3D=3D name) {=0A=
+                return metas[m].getAttribute("content");=0A=
+            }=0A=
+        }=0A=
+        return value_default;=0A=
+    },=0A=
+    =0A=
+    /*=0A=
+     * (c)2006 Dean Edwards/Matthias Miller/John Resig=0A=
+     * Special thanks to Dan Webb's domready.js Prototype extension=0A=
+     * and Simon Willison's addLoadEvent=0A=
+     *=0A=
+     * For more info, see:=0A=
+     * http://dean.edwards.name/weblog/2006/06/again/=0A=
+     * =
+http://www.vivabit.com/bollocks/2006/06/21/a-dom-ready-extension-for-prot=
+otype=0A=
+     * http://simon.incutio.com/archive/2004/05/26/addLoadEvent=0A=
+     * =0A=
+     * Thrown together by Jesse Skinner =
+(http://www.thefutureoftheweb.com/)=0A=
+     *=0A=
+     *=0A=
+     * To use: call addDOMLoadEvent one or more times with functions, ie:=0A=
+     *=0A=
+     *    function something() {=0A=
+     *       // do something=0A=
+     *    }=0A=
+     *    addDOMLoadEvent(something);=0A=
+     *=0A=
+     *    addDOMLoadEvent(function() {=0A=
+     *        // do other stuff=0A=
+     *    });=0A=
+     *=0A=
+     */ =0A=
+    addDOMLoadEvent: function(func) {=0A=
+       if (!window.__load_events) {=0A=
+          var init =3D function () {=0A=
+              // quit if this function has already been called=0A=
+              if (arguments.callee.done) return;=0A=
+          =0A=
+              // flag this function so we don't do the same thing twice=0A=
+              arguments.callee.done =3D true;=0A=
+          =0A=
+              // kill the timer=0A=
+              if (window.__load_timer) {=0A=
+                  clearInterval(window.__load_timer);=0A=
+                  window.__load_timer =3D null;=0A=
+              }=0A=
+              =0A=
+              // execute each function in the stack in the order they =
+were added=0A=
+              for (var i=3D0;i < window.__load_events.length;i++) {=0A=
+                  window.__load_events[i]();=0A=
+              }=0A=
+              window.__load_events =3D null;=0A=
+              =0A=
+              // clean up the __ie_onload event=0A=
+              /*@cc_on @*/=0A=
+              /*@if (@_win32)=0A=
+                  =
+document.getElementById("__ie_onload").onreadystatechange =3D "";=0A=
+              /*@end @*/=0A=
+          };=0A=
+       =0A=
+          // for Mozilla/Opera9=0A=
+          if (document.addEventListener) {=0A=
+              document.addEventListener("DOMContentLoaded", init, false);=0A=
+          }=0A=
+          =0A=
+          // for Internet Explorer=0A=
+          /*@cc_on @*/=0A=
+          /*@if (@_win32)=0A=
+              document.write("<scr"+"ipt id=3D__ie_onload defer =
+src=3Djavascript:void(0)><\/scr"+"ipt>");=0A=
+              var script =3D document.getElementById("__ie_onload");=0A=
+              script.onreadystatechange =3D function() {=0A=
+                  if (this.readyState =3D=3D "complete") {=0A=
+                      init(); // call the onload handler=0A=
+                  }=0A=
+              };=0A=
+          /*@end @*/=0A=
+          =0A=
+          // for Safari=0A=
+          if (/WebKit/i.test(navigator.userAgent)) { // sniff=0A=
+              window.__load_timer =3D setInterval(function() {=0A=
+                  if (/loaded|complete/.test(document.readyState)) {=0A=
+                      init(); // call the onload handler=0A=
+                  }=0A=
+              }, 10);=0A=
+          }=0A=
+          =0A=
+          // for other browsers=0A=
+          window.onload =3D init;=0A=
+          =0A=
+          // create event function stack=0A=
+          window.__load_events =3D [];=0A=
+       }=0A=
+       =0A=
+       // add function to event stack=0A=
+       window.__load_events.push(func);=0A=
+    }=0A=
+}=0A=
+=0A=
+hinclude.addDOMLoadEvent(function() { hinclude.run(); });=0A=
+
+------=_NextPart_000_0000_01C9A369.AD20A0A0
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://pagead2.googlesyndication.com/pagead/show_ads.js
+
+(function(){=0A=
+var g=3Dfalse,h=3Dnull,k=3Dtrue,m=3D(new Date).getTime();var =
+aa=3D{google_ad_channel:"channel",google_ad_host:"host",google_ad_host_ch=
+annel:"h_ch",google_ad_host_tier_id:"ht_id",google_ad_region:"region",goo=
+gle_ad_section:"region",google_ad_type:"ad_type",google_adtest:"adtest",g=
+oogle_allow_expandable_ads:"ea",google_alternate_ad_url:"alternate_ad_url=
+",google_alternate_color:"alt_color",google_bid:"bid",google_city:"gcs",g=
+oogle_color_bg:"color_bg",google_color_border:"color_border",google_color=
+_line:"color_line",google_color_link:"color_link",google_color_text:"colo=
+r_text",=0A=
+google_color_url:"color_url",google_contents:"contents",google_country:"g=
+l",google_cust_age:"cust_age",google_cust_ch:"cust_ch",google_cust_gender=
+:"cust_gender",google_cust_id:"cust_id",google_cust_interests:"cust_inter=
+ests",google_cust_job:"cust_job",google_cust_l:"cust_l",google_cust_lh:"c=
+ust_lh",google_cust_u_url:"cust_u_url",google_disable_video_autoplay:"dis=
+able_video_autoplay",google_ed:"ed",google_encoding:"oe",google_feedback:=
+"feedback_link",google_flash_version:"flash",google_font_face:"f",=0A=
+google_gl:"gl",google_hints:"hints",google_kw:"kw",google_kw_type:"kw_typ=
+e",google_language:"hl",google_page_url:"url",google_referrer_url:"ref",g=
+oogle_region:"gr",google_reuse_colors:"reuse_colors",google_safe:"adsafe"=
+,google_tag_info:"gut",google_targeting:"targeting",google_ui_features:"u=
+i",google_ui_version:"uiv",google_video_doc_id:"video_doc_id",google_vide=
+o_product_type:"video_product_type"},ba=3D{google_ad_format:"format",goog=
+le_ad_output:"output",google_ad_callback:"callback",google_ad_override:"g=
+oogle_ad_override",=0A=
+google_ad_slot:"slotname",google_analytics_uacct:"ga_wpids",google_correl=
+ator:"correlator",google_cpa_choice:"cpa_choice",google_ctr_threshold:"ct=
+r_t",google_image_size:"image_size",google_last_modified_time:"lmt",googl=
+e_max_num_ads:"num_ads",google_max_radlink_len:"max_radlink_len",google_n=
+um_radlinks:"num_radlinks",google_num_radlinks_per_unit:"num_radlinks_per=
+_unit",google_only_ads_with_video:"only_ads_with_video",google_page_locat=
+ion:"loc",google_rl_dest_url:"rl_dest_url",google_rl_filtering:"rl_filter=
+ing",=0A=
+google_rl_mode:"rl_mode",google_rt:"rt",google_skip:"skip"},ca=3D{google_=
+only_pyv_ads:"pyv"};function o(a){return =
+aa[a]||ba[a]||ca[a]||h};document.URL&&(document.URL.indexOf("?google_debu=
+g")>0||document.URL.indexOf("&google_debug")>0);function =
+p(){this.b=3Dthis.p();this.h=3Dg;if(!this.b)this.h=3Dthis.j()}p.prototype=
+.f=3D"__gads=3D";p.prototype.c=3D"GoogleAdServingTest=3D";p.prototype.o=3D=
+function(){return =
+this.b};p.prototype.setCookieInfo=3Dfunction(a){this.a=3Da._cookies_[0];i=
+f(this.a!=3Dh){this.b=3Dthis.a._value_;this.q()}};p.prototype.l=3Dfunctio=
+n(a){var b=3D(new Date).valueOf(),c=3Dnew Date;c.setTime(b+a);return c};=0A=
+p.prototype.k=3Dfunction(a){if(!(this.b!=3Dh||!this.h)){var =
+b=3D"script",c=3Ddocument.domain,d=3D"http://partner.googleadservices.com=
+/gampad/cookie.js?callback=3D_GA_googleCookieHelper.setCookieInfo&client=3D=
+"+r(a)+"&domain=3D"+r(c);document.write("<"+b+' =
+src=3D"'+d+'"></'+b+">")}};p.prototype.j=3Dfunction(){document.cookie=3Dt=
+his.c+"Good";var a=3Dthis.g(this.c),b=3Da=3D=3D"Good";if(b){var =
+c=3Dthis.l(-1);document.cookie=3Dthis.c+"; =
+expires=3D"+c.toGMTString()}return b};p.prototype.p=3Dfunction(){var =
+a=3Dthis.g(this.f);return a};=0A=
+p.prototype.g=3Dfunction(a){var =
+b=3Ddocument.cookie,c=3Db.indexOf(a),d=3Dh;if(c!=3D-1){var =
+e=3Dc+a.length,f=3Db.indexOf(";",e);if(f=3D=3D-1)f=3Db.length;d=3Db.subst=
+ring(e,f)}return =
+d};p.prototype.q=3Dfunction(){if(!(this.a=3D=3Dh))if(!(this.b=3D=3Dh)){va=
+r a=3Dnew Date;a.setTime(1000*this.a._expires_);var =
+b=3Dthis.a._domain_,c=3Dthis.f+this.b+"; expires=3D"+a.toGMTString()+"; =
+path=3D"+this.a._path_+"; domain=3D."+b;document.cookie=3Dc}};function =
+s(a,b){var c;return a?(c=3DparseFloat(a))?c:b:b}=0A=
+function da(a,b){if(a=3D=3D"true")return k;if(a=3D=3D"false")return =
+g;return b}=0A=
+function ea(){if(navigator.plugins&&navigator.mimeTypes.length){var =
+a=3Dnavigator.plugins["Shockwave Flash"];if(a&&a.description)return =
+a.description.replace(/([a-zA-Z]|\s)+/,"").replace(/(\s)+r/,".")}else =
+if(navigator.userAgent&&navigator.userAgent.indexOf("Windows =
+CE")>=3D0){var b=3D3,c=3D1;for(;c;)try{c=3Dnew =
+ActiveXObject("ShockwaveFlash.ShockwaveFlash."+(b+1));b++}catch(d){c=3Dh}=
+return b.toString()}else if(fa()){var c=3Dh;try{c=3Dnew =
+ActiveXObject("ShockwaveFlash.ShockwaveFlash.7")}catch(d){var =
+b=3D0;try{c=3Dnew ActiveXObject("ShockwaveFlash.ShockwaveFlash.6");=0A=
+b=3D6;c.AllowScriptAccess=3D"always"}catch(d){if(b=3D=3D6)return =
+b.toString()}try{c=3Dnew =
+ActiveXObject("ShockwaveFlash.ShockwaveFlash")}catch(d){}}if(c!=3Dh){var =
+b=3Dc.GetVariable("$version").split(" ")[1];return =
+b.replace(/,/g,".")}}return"0"};var =
+ga=3Dga||{},t=3Dthis,w=3Dfunction(a){var b=3Dtypeof =
+a;if(b=3D=3D"object")if(a){if(a instanceof Array||!(a instanceof =
+Object)&&Object.prototype.toString.call(a)=3D=3D"[object =
+Array]")return"array";if(typeof =
+a.call!=3D"undefined")return"function"}else return"null";else =
+if(b=3D=3D"function"&&typeof =
+a.call=3D=3D"undefined")return"object";return b};var =
+ha=3Dfunction(a){var b=3Dw(a);return =
+b=3D=3D"array"||b=3D=3D"object"&&typeof a.length=3D=3D"number"};=0A=
+var ia=3Dfunction(a){var b=3Dw(a);return =
+b=3D=3D"object"||b=3D=3D"array"||b=3D=3D"function"},ja=3Dfunction(a){var =
+b=3Dw(a);if(b=3D=3D"object"||b=3D=3D"array"){if(a.clone)return =
+a.clone.call(a);var c=3Db=3D=3D"array"?[]:{};for(var d in =
+a)c[d]=3Dja(a[d]);return c}return a};var =
+ka=3Dfunction(a,b,c){if(a.forEach)a.forEach(b,c);else =
+if(Array.forEach)Array.forEach(a,b,c);else{var d=3Da.length,e=3Dtypeof =
+a=3D=3D"string"?a.split(""):a,f=3D0;for(;f<d;f++)f in =
+e&&b.call(c,e[f],f,a)}},la=3Dfunction(a){if(w(a)=3D=3D"array")return =
+a.concat();else{var =
+b=3D[],c=3D0,d=3Da.length;for(;c<d;c++)b[c]=3Da[c];return b}};var =
+x=3Dfunction(a,b){this.x=3Dtypeof a!=3D"undefined"?a:0;this.y=3Dtypeof =
+b!=3D"undefined"?b:0};x.prototype.clone=3Dfunction(){return new =
+x(this.x,this.y)};x.prototype.toString=3Dfunction(){return"("+this.x+", =
+"+this.y+")"};var =
+y=3Dfunction(a,b){this.width=3Da;this.height=3Db};y.prototype.clone=3Dfun=
+ction(){return new =
+y(this.width,this.height)};y.prototype.toString=3Dfunction(){return"("+th=
+is.width+" x =
+"+this.height+")"};y.prototype.ceil=3Dfunction(){this.width=3DMath.ceil(t=
+his.width);this.height=3DMath.ceil(this.height);return =
+this};y.prototype.floor=3Dfunction(){this.width=3DMath.floor(this.width);=
+this.height=3DMath.floor(this.height);return this};=0A=
+y.prototype.round=3Dfunction(){this.width=3DMath.round(this.width);this.h=
+eight=3DMath.round(this.height);return =
+this};y.prototype.scale=3Dfunction(a){this.width*=3Da;this.height*=3Da;re=
+turn this};var ma=3Dfunction(a,b,c){for(var d in =
+a)b.call(c,a[d],d,a)};var ra=3Dfunction(a){return =
+a.replace(/^[\s\xa0]+|[\s\xa0]+$/g,"")},xa=3Dfunction(a,b){if(b)return =
+a.replace(sa,"&amp;").replace(ta,"&lt;").replace(ua,"&gt;").replace(va,"&=
+quot;");else{if(!wa.test(a))return =
+a;if(a.indexOf("&")!=3D-1)a=3Da.replace(sa,"&amp;");if(a.indexOf("<")!=3D=
+-1)a=3Da.replace(ta,"&lt;");if(a.indexOf(">")!=3D-1)a=3Da.replace(ua,"&gt=
+;");if(a.indexOf('"')!=3D-1)a=3Da.replace(va,"&quot;");return =
+a}},sa=3D/&/g,ta=3D/</g,ua=3D/>/g,va=3D/\"/g,wa=3D/[&<>\"]/,ya=3Dfunction=
+(a,b){var c=3Db.length,d=3D0;for(;d<c;d++){var e=3D=0A=
+c=3D=3D1?b:b.charAt(d);if(a.charAt(0)=3D=3De&&a.charAt(a.length-1)=3D=3De=
+)return a.substring(1,a.length-1)}return a};=0A=
+var za=3Dfunction(a,b){var =
+c=3D0,d=3Dra(String(a)).split("."),e=3Dra(String(b)).split("."),f=3DMath.=
+max(d.length,e.length),i=3D0;for(;c=3D=3D0&&i<f;i++){var =
+j=3Dd[i]||"",n=3De[i]||"",l=3Dnew RegExp("(\\d*)(\\D*)","g"),u=3Dnew =
+RegExp("(\\d*)(\\D*)","g");do{var =
+v=3Dl.exec(j)||["","",""],q=3Du.exec(n)||["","",""];if(v[0].length=3D=3D0=
+&&q[0].length=3D=3D0)break;var =
+E=3Dv[1].length=3D=3D0?0:parseInt(v[1],10),T=3Dq[1].length=3D=3D0?0:parse=
+Int(q[1],10);c=3Dz(E,T)||z(v[2].length=3D=3D0,q[2].length=3D=3D0)||z(v[2]=
+,q[2])}while(c=3D=3D0)}return c},z=3Dfunction(a,b){if(a<=0A=
+b)return-1;else if(a>b)return 1;return 0};var =
+A,Aa,B,Ba,Ca,Da,Ea,Fa,Ga,Ha=3Dfunction(){return =
+t.navigator?t.navigator.userAgent:h};var =
+Ia=3Dfunction(){Da=3DCa=3DBa=3DB=3DAa=3DA=3Dg;var a;if(a=3DHa()){var =
+b=3Dt.navigator;A=3Da.indexOf("Opera")=3D=3D0;Aa=3D!A&&a.indexOf("MSIE")!=
+=3D-1;Ba=3D(B=3D!A&&a.indexOf("WebKit")!=3D-1)&&a.indexOf("Mobile")!=3D-1=
+;Da=3D(Ca=3D!A&&!B&&b.product=3D=3D"Gecko")&&b.vendor=3D=3D"Camino"}};Ia(=
+);=0A=
+var C=3DA,D=3DAa,Ja=3DCa,F=3DB,Ka=3DBa,La=3Dfunction(){var =
+a=3Dt.navigator;return =
+a&&a.platform||""},Ma=3DLa(),Na=3Dfunction(){Ea=3DMa.indexOf("Mac")!=3D-1=
+;Fa=3DMa.indexOf("Win")!=3D-1;Ga=3DMa.indexOf("Linux")!=3D-1};Na();var =
+Oa=3DEa,Pa=3DFa,Qa=3DGa,Ra=3Dfunction(){var a=3D"",b;if(C&&t.opera){var =
+c=3Dt.opera.version;a=3Dtypeof =
+c=3D=3D"function"?c():c}else{if(Ja)b=3D/rv\:([^\);]+)(\)|;)/;else =
+if(D)b=3D/MSIE\s+([^\);]+)(\)|;)/;else =
+if(F)b=3D/WebKit\/(\S+)/;if(b){var =
+d=3Db.exec(Ha());a=3Dd?d[1]:""}}return a},Sa=3DRa();var =
+G=3Dfunction(a){return za(Sa,a)>=3D0};var H;var Ta=3Dfunction(a){return =
+a?new I(J(a)):H||(H=3Dnew I)};=0A=
+var Ua=3Dfunction(a){return typeof =
+a=3D=3D"string"?document.getElementById(a):a},Va=3DUa,Xa=3Dfunction(a,b){=
+ma(b,function(c,d){if(d=3D=3D"style")a.style.cssText=3Dc;else =
+if(d=3D=3D"class")a.className=3Dc;else =
+if(d=3D=3D"for")a.htmlFor=3Dc;else if(d in =
+Wa)a.setAttribute(Wa[d],c);else =
+a[d]=3Dc})},Wa=3D{cellpadding:"cellPadding",cellspacing:"cellSpacing",col=
+span:"colSpan",rowspan:"rowSpan",valign:"vAlign",height:"height",width:"w=
+idth",usemap:"useMap",frameborder:"frameBorder",type:"type"},Ya=3Dfunctio=
+n(a){var b=3Da||t||window,c=3Db.document;=0A=
+if(F&&!G("500")&&!Ka){if(typeof =
+b.innerHeight=3D=3D"undefined")b=3Dwindow;var =
+d=3Db.innerHeight,e=3Db.document.documentElement.scrollHeight;if(b=3D=3Db=
+.top)if(e<d)d-=3D15;return new y(b.innerWidth,d)}var =
+f=3DTa(c),i=3Df.e()&&(!C||C&&G("9.50"))?c.documentElement:c.body;return =
+new y(i.clientWidth,i.clientHeight)},Za=3Dfunction(){var a=3DH||(H=3Dnew =
+I);return =
+a.i.apply(a,arguments)},$a=3Dfunction(a,b){a.appendChild(b)},ab=3Dfunctio=
+n(a){return =
+a&&a.parentNode?a.parentNode.removeChild(a):h},bb=3Dfunction(a,b){var =
+c=3Db.parentNode;c&&c.replaceChild(a,=0A=
+b)};=0A=
+var eb=3DF&&za(Sa,"521")<=3D0,fb=3Dfunction(a,b){if(typeof =
+a.contains!=3D"undefined"&&!eb&&b.nodeType=3D=3D1)return =
+a=3D=3Db||a.contains(b);if(typeof =
+a.compareDocumentPosition!=3D"undefined")return =
+a=3D=3Db||Boolean(a.compareDocumentPosition(b)&16);for(;b&&a!=3Db;)b=3Db.=
+parentNode;return b=3D=3Da},J=3Dfunction(a){return =
+a.nodeType=3D=3D9?a:a.ownerDocument||a.document},gb=3Dfunction(a){if(a&&t=
+ypeof a.length=3D=3D"number")if(ia(a))return typeof =
+a.item=3D=3D"function"||typeof a.item=3D=3D"string";else =
+if(w(a)=3D=3D"function")return typeof a.item=3D=3D"function";return g},=0A=
+I=3Dfunction(a){this.d=3Da||t.document||document};=0A=
+I.prototype.i=3Dfunction(a,b){if(D&&b&&(b.name||b.type)){var =
+c=3D["<",a];b.name&&c.push(' =
+name=3D"',xa(b.name),'"');if(b.type){c.push(' =
+type=3D"',xa(b.type),'"');b=3Dja(b);delete =
+b.type}c.push(">");a=3Dc.join("")}var =
+d=3Dthis.createElement(a);b&&Xa(d,b);if(arguments.length>2){function =
+e(j){if(j)this.appendChild(d,typeof =
+j=3D=3D"string"?this.createTextNode(j):j)}var =
+f=3D2;for(;f<arguments.length;f++){var =
+i=3Darguments[f];ha(i)&&!(ia(i)&&i.nodeType>0)?ka(gb(i)?la(i):i,e,this):e=
+.call(this,i)}}return d};=0A=
+I.prototype.createElement=3Dfunction(a){return =
+this.d.createElement(a)};I.prototype.createTextNode=3Dfunction(a){return =
+this.d.createTextNode(a)};I.prototype.e=3Dfunction(){var =
+a=3Dthis.d;if(a.compatMode)return =
+a.compatMode=3D=3D"CSS1Compat";if(F){var =
+b=3Da.createElement("div");b.style.cssText=3D"position:absolute;width:0;h=
+eight:0;width:1";var =
+c=3Db.style.width=3D=3D"1px"?"BackCompat":"CSS1Compat";return(a.compatMod=
+e=3Dc)=3D=3D"CSS1Compat"}return g};=0A=
+I.prototype.n=3Dfunction(){var =
+a=3Dthis.d;return!F&&this.e()?a.documentElement:a.body};I.prototype.m=3Df=
+unction(){var a=3Dthis.n();return new =
+x(a.scrollLeft,a.scrollTop)};I.prototype.appendChild=3D$a;I.prototype.rem=
+oveNode=3Dab;I.prototype.replaceNode=3Dbb;I.prototype.contains=3Dfb;var =
+hb,ib,jb,kb,lb,mb,nb=3Dfunction(){mb=3Dlb=3Dkb=3Djb=3Dib=3Dhb=3Dg;var =
+a=3DHa();if(!!a)if(a.indexOf("Firefox")!=3D-1)hb=3Dk;else =
+if(a.indexOf("Camino")!=3D-1)ib=3Dk;else =
+if(a.indexOf("iPhone")!=3D-1||a.indexOf("iPod")!=3D-1)jb=3Dk;else =
+if(a.indexOf("Android")!=3D-1)kb=3Dk;else =
+if(a.indexOf("Chrome")!=3D-1)lb=3Dk;else =
+if(a.indexOf("Safari")!=3D-1)mb=3Dk};nb();var ob=3Dib;var =
+pb,qb=3Dfunction(a,b){var =
+c=3DJ(a);if(c.defaultView&&c.defaultView.getComputedStyle){var =
+d=3Dc.defaultView.getComputedStyle(a,"");if(d)return d[b]}return h};var =
+K=3Dfunction(a,b){return =
+qb(a,b)||(a.currentStyle?a.currentStyle[b]:h)||a.style[b]};=0A=
+var rb=3Dfunction(a){var =
+b;b=3Da?a.nodeType=3D=3D9?a:J(a):document;if(D&&!Ta(b).e())return =
+b.body;return b.documentElement},sb=3Dfunction(a){var =
+b=3Da.getBoundingClientRect();if(D){var =
+c=3Da.ownerDocument;b.left-=3Dc.documentElement.clientLeft+c.body.clientL=
+eft;b.top-=3Dc.documentElement.clientTop+c.body.clientTop}return =
+b},tb=3Dfunction(a){if(D)return a.offsetParent;var =
+b=3DJ(a),c=3DK(a,"position"),d=3Dc=3D=3D"fixed"||c=3D=3D"absolute",e=3Da.=
+parentNode;for(;e&&e!=3Db;e=3De.parentNode){c=3DK(e,"position");d=3Dd&&c=3D=
+=3D"static"&&e!=3Db.documentElement&&=0A=
+e!=3Db.body;if(!d&&(e.scrollWidth>e.clientWidth||e.scrollHeight>e.clientH=
+eight||c=3D=3D"fixed"||c=3D=3D"absolute"))return e}return =
+h},ub=3Dfunction(a){var =
+b,c=3DJ(a),d=3DK(a,"position"),e=3DJa&&c.getBoxObjectFor&&!a.getBoundingC=
+lientRect&&d=3D=3D"absolute"&&(b=3Dc.getBoxObjectFor(a))&&(b.screenX<0||b=
+.screenY<0);if(typeof pb=3D=3D"undefined")pb=3Dob&&!G("1.8.0.11");var =
+f=3Dnew x(0,0),i=3Drb(c);if(a=3D=3Di)return =
+f;if(a.getBoundingClientRect){b=3Dsb(a);var =
+j=3DTa(c).m();f.x=3Db.left+j.x;f.y=3Db.top+j.y}else =
+if(c.getBoxObjectFor&&!e&&!pb){b=3Dc.getBoxObjectFor(a);=0A=
+var =
+n=3Dc.getBoxObjectFor(i);f.x=3Db.screenX-n.screenX;f.y=3Db.screenY-n.scre=
+enY}else{var =
+l=3Da;do{f.x+=3Dl.offsetLeft;f.y+=3Dl.offsetTop;if(l!=3Da){f.x+=3Dl.clien=
+tLeft||0;f.y+=3Dl.clientTop||0}if(F&&K(l,"position")=3D=3D"fixed"){f.x+=3D=
+c.body.scrollLeft;f.y+=3Dc.body.scrollTop;break}l=3Dl.offsetParent}while(=
+l&&l!=3Da);if(C||F&&d=3D=3D"absolute")f.y-=3Dc.body.offsetTop;l=3Da;for(;=
+(l=3Dtb(l))&&l!=3Dc.body;){f.x-=3Dl.scrollLeft;if(!C||l.tagName!=3D"TR")f=
+.y-=3Dl.scrollTop}}return =
+f},vb=3Dfunction(a,b,c,d){if(/^\d+px?$/.test(b))return parseInt(b,10);=0A=
+else{var =
+e=3Da.style[c],f=3Da.runtimeStyle[c];a.runtimeStyle[c]=3Da.currentStyle[c=
+];a.style[c]=3Db;var =
+i=3Da.style[d];a.style[c]=3De;a.runtimeStyle[c]=3Df;return =
+i}},wb=3Dfunction(a){var b=3DJ(a),c=3D"";if(b.createTextRange){var =
+d=3Db.body.createTextRange();d.moveToElementText(a);c=3Dd.queryCommandVal=
+ue("FontName")}if(!c){c=3DK(a,"fontFamily");if(C&&Qa)c=3Dc.replace(/ =
+\[[^\]]*\]/,"")}var e=3Dc.split(",");if(e.length>1)c=3De[0];return =
+ya(c,"\"'")},xb=3Dfunction(a){var b=3Da.match(/[^\d]+$/);return =
+b&&b[0]||h},yb=3D{cm:1,"in":1,mm:1,pc:1,=0A=
+pt:1},zb=3D{em:1,ex:1},Ab=3Dfunction(a){var =
+b=3DK(a,"fontSize"),c=3Dxb(b);if(b&&"px"=3D=3Dc)return =
+parseInt(b,10);if(D)if(c in yb)return vb(a,b,"left","pixelLeft");else =
+if(a.parentNode&&c in zb)return =
+vb(a.parentNode,b,"left","pixelLeft");var =
+d=3DZa("span",{style:"visibility:hidden;position:absolute;line-height:0;p=
+adding:0;margin:0;border:0;height:1em;"});$a(a,d);b=3Dd.offsetHeight;ab(d=
+);return b};var L=3Ddocument,M=3Dnavigator,O=3Dwindow;=0A=
+function Bb(){var a=3DL.cookie,b=3DMath.round((new =
+Date).getTime()/1000),c=3DO.google_analytics_domain_name,d=3Dtypeof =
+c=3D=3D"undefined"?Cb("auto"):Cb(c),e=3Da.indexOf("__utma=3D"+d+".")>-1,f=
+=3Da.indexOf("__utmb=3D"+d)>-1,i=3Da.indexOf("__utmc=3D"+d)>-1,j,n=3D{};i=
+f(e){j=3Da.split("__utma=3D"+d+".")[1].split(";")[0].split(".");n.sid=3Df=
+&&i?j[3]+"":O&&O.gaGlobal&&O.gaGlobal.sid?O.gaGlobal.sid:b+"";n.vid=3Dj[0=
+]+"."+j[1];n.from_cookie=3Dk}else{n.sid=3DO&&O.gaGlobal&&O.gaGlobal.sid?O=
+.gaGlobal.sid:b+"";n.vid=3DO&&O.gaGlobal&&O.gaGlobal.vid?=0A=
+O.gaGlobal.vid:(Db()^Eb()&2147483647)+"."+b;n.from_cookie=3Dg}n.dh=3Dd;n.=
+hid=3DO&&O.gaGlobal&&O.gaGlobal.hid?O.gaGlobal.hid:Db();return =
+O.gaGlobal=3Dn}function Db(){return Math.round(Math.random()*2147483647)}=0A=
+function Eb(){var =
+a=3DL.cookie?L.cookie:"",b=3DO.history.length,c,d,e=3D[M.appName,M.versio=
+n,M.language?M.language:M.browserLanguage,M.platform,M.userAgent,M.javaEn=
+abled()?1:0].join("");if(O.screen)e+=3DO.screen.width+"x"+O.screen.height=
++O.screen.colorDepth;else =
+if(O.java){d=3Djava.awt.Toolkit.getDefaultToolkit().getScreenSize();e+=3D=
+d.screen.width+"x"+d.screen.height}e+=3Da;e+=3DL.referrer?L.referrer:"";c=
+=3De.length;for(;b>0;)e+=3Db--^c++;return Fb(e)}=0A=
+function Fb(a){var =
+b=3D1,c=3D0,d,e;if(!(a=3D=3Dundefined||a=3D=3D"")){b=3D0;d=3Da.length-1;f=
+or(;d>=3D0;d--){e=3Da.charCodeAt(d);b=3D(b<<6&268435455)+e+(e<<14);c=3Db&=
+266338304;b=3Dc!=3D0?b^c>>21:b}}return b}function =
+Cb(a){if(!a||a=3D=3D""||a=3D=3D"none")return =
+1;if("auto"=3D=3Da){a=3DL.domain;if("www."=3D=3Da.substring(0,4))a=3Da.su=
+bstring(4,a.length)}return Fb(a.toLowerCase())};var =
+P=3D"",Gb=3Dk;function Q(a){if(a){if(P!=3D"")P+=3D",";P+=3Da}}var =
+R=3Dg,Hb=3Dda("true",g);function Ib(a,b){var =
+c=3D"script";R=3DJb(a,b);var d=3D!Kb();R&&d&&b.write("<"+c+' =
+src=3D"http://pagead2.googlesyndication.com/pagead/expansion_embed.js"></=
+'+c+">");var e=3DLb(a,b,s("1",0.01)),f=3Dd||e;f&&fa()?b.write("<"+c+' =
+src=3D"http://pagead2.googlesyndication.com/pagead/render_ads.js"></'+c+"=
+>"):b.write("<"+c+">window.google_render_ad();</"+c+">")}=0A=
+function S(a){return a!=3Dh?'"'+a+'"':'""'}function r(a){return typeof =
+encodeURIComponent=3D=3D"function"?encodeURIComponent(a):escape(a)}functi=
+on U(a,b){if(a&&b)window.google_ad_url+=3D"&"+a+"=3D"+b}function =
+V(a){var b=3Dwindow,c=3Do(a),d=3Db[a];U(c,d)}function =
+W(a,b){b!=3Dh&&U(a,r(b))}function X(a){var =
+b=3Dwindow,c=3Do(a),d=3Db[a];W(c,d)}function Y(a,b){var =
+c=3Dwindow,d=3Do(a),e=3Dc[a];if(d&&e&&typeof =
+e=3D=3D"object")e=3De[b%e.length];U(d,e)}=0A=
+function Mb(a){var b=3Da.screen,c=3Dnavigator.javaEnabled(),d=3D-(new =
+Date).getTimezoneOffset();if(b){U("u_h",b.height);U("u_w",b.width);U("u_a=
+h",b.availHeight);U("u_aw",b.availWidth);U("u_cd",b.colorDepth)}U("u_tz",=
+d);U("u_his",history.length);U("u_java",c);navigator.plugins&&U("u_nplug"=
+,navigator.plugins.length);navigator.mimeTypes&&U("u_nmime",navigator.mim=
+eTypes.length)}=0A=
+function =
+Nb(a){if(!!a.google_enable_first_party_cookie){if(a._GA_googleCookieHelpe=
+r=3D=3Dh)a._GA_googleCookieHelper=3Dnew =
+p;if(!a._google_cookie_fetched){a._google_cookie_fetched=3Dk;a._GA_google=
+CookieHelper.k(Ob(a.google_ad_client))}}}function =
+Ob(a){if(a){a=3Da.toLowerCase();if(a.substring(0,3)!=3D"ca-")a=3D"ca-"+a}=
+return a}function =
+Pb(a){if(a){a=3Da.toLowerCase();if(a.substring(0,9)!=3D"dist-aff-")a=3D"d=
+ist-aff-"+a}return a}function Qb(a){var =
+b=3D"google_unique_id";if(a[b])++a[b];else a[b]=3D1;return a[b]}=0A=
+function Rb(){var =
+a=3DD&&G("6")&&!G("8"),b=3DJa&&G("1.8.1"),c=3DF&&G("525");if(Pa&&(a||b||c=
+))return k;else if(Oa&&(c||b))return k;else if(Qa&&b)return k;return =
+g}function Kb(){return typeof =
+ExpandableAdSlotFactory=3D=3D"function"&&typeof =
+ExpandableAdSlotFactory.createIframe=3D=3D"function"}function =
+Jb(a,b){var =
+c=3Da.google_allow_expandable_ads;if(c!=3Dh&&c=3D=3Dg||!b.body||a.google_=
+ad_output!=3D"html"||Sb(a,b)||Tb(a)||Z(a.google_ad_format)||isNaN(a.googl=
+e_ad_height)||isNaN(a.google_ad_width)||!Rb())return g;return k}=0A=
+function Ub(){var =
+a=3DMath.random(),b=3Ds("0",0.03),c=3D2*b;if(a<b)return"30143019";if(a<c)=
+return"30143020";return""}function Vb(){var =
+a=3DMath.random(),b=3Ds("0",0.03),c=3D2*b;if(a<b)return"30143021";if(a<c)=
+return"30143022";return""}function Wb(){var =
+a=3DMath.random(),b=3Ds("0.03",0.02),c=3D2*b;if(a<b)return"6083028";if(a<=
+c)return"6083029";return""}=0A=
+function Xb(){var =
+a=3DMath.random(),b=3Ds("0.02",0.0050),c=3D2*b;if(a<b)return"54341001";if=
+(a<c)return"54341002";return""}function =
+Yb(a){a.google_allow_expandable_ads=3Dg;a.google_expandable_iframe=3Dg}=0A=
+function Zb(a,b,c,d){var =
+e=3DQb(a);c=3Dc.substring(0,1992);c=3Dc.replace(/%\w?$/,"");var =
+f=3D"script";if((a.google_ad_output=3D=3D"js"||a.google_ad_output=3D=3D"j=
+son_html")&&(a.google_ad_request_done||a.google_radlink_request_done))b.w=
+rite("<"+f+' language=3D"JavaScript1.1" =
+src=3D'+S($(c))+"></"+f+">");else =
+if(a.google_ad_output=3D=3D"html")if($b(a)&&Kb()){var =
+i=3Da.google_container_id||d||h;a["google_expandable_ad_slot"+e]=3DExpand=
+ableAdSlotFactory.createIframe("google_ads_frame"+e,$(c),a.google_ad_widt=
+h,a.google_ad_height,=0A=
+i)}else{var j=3D'<iframe name=3D"google_ads_frame" =
+width=3D'+S(a.google_ad_width)+" height=3D"+S(a.google_ad_height)+" =
+frameborder=3D"+S(a.google_ad_frameborder)+" src=3D"+S($(c))+' =
+marginwidth=3D"0" marginheight=3D"0" vspace=3D"0" hspace=3D"0" =
+allowtransparency=3D"true" =
+scrolling=3D"no"></iframe>';j=3Dac(a.google_ad_width,a.google_ad_height,j=
+);a.google_container_id?bc(a.google_container_id,b,j):b.write(j)}else =
+a.google_ad_output=3D=3D"textlink"&&b.write("<"+f+' =
+language=3D"JavaScript1.1" src=3D'+S($(c))+"></"+f+">")}=0A=
+function $b(a){if(!R)return g;var =
+b=3DP.indexOf("30143020")!=3D-1,c=3DP.indexOf("30143019")!=3D-1,d=3Da.goo=
+gle_expandable_iframe;return Hb&&!c||b||d}function cc(a){var =
+b=3Dda("false",g);return =
+b&&a.indexOf("30143021")=3D=3D-1||a.indexOf("30143022")!=3D-1}=0A=
+function ac(a,b,c){var d=3Dcc(P);if(R&&d){var =
+e=3D"border:none;height:"+b+"px;margin:0;padding:0;position:relative;visi=
+bility:visible;width:"+a+"px";return'<ins =
+style=3D"display:inline-table;'+e+'"><ins =
+style=3D"display:block;'+e+'">'+c+"</ins></ins>"}return c}function =
+dc(a,b,c){if(!a)return g;if(!b)return k;if(!c)return g;var =
+d=3DXb();Q(d);return d=3D=3D"54341002"}=0A=
+function ec(a){for(var b in aa)a[b]=3Dh;for(var b in =
+ba)b=3D=3D"google_correlator"||(a[b]=3Dh);for(var b in =
+ca)a[b]=3Dh;a.google_allow_expandable_ads=3Dh;a.google_container_id=3Dh;a=
+.google_expandable_iframe=3Dh;a.google_tag_info=3Dh}function =
+Tb(a){if(a.google_ad_format)return =
+a.google_ad_format.indexOf("_0ads")>0;return =
+a.google_ad_output!=3D"html"&&a.google_num_radlinks>0}function =
+Z(a){return a&&a.indexOf("_sdo")!=3D-1}=0A=
+function fc(a){var =
+b=3Dh,c=3Dwindow,d=3Ddocument,e=3Dm,f=3Dc.google_ad_format,i=3Dgc(c),j;if=
+(c.google_cpa_choice!=3Db){c.google_ad_url=3Di+"/cpa/ads?";j=3Descape(Ob(=
+c.google_ad_client));c.google_ad_region=3D"_google_cpa_region_";V("google=
+_cpa_choice");if(typeof =
+d.characterSet!=3D"undefined")W("oe",d.characterSet);else typeof =
+d.charset!=3D"undefined"&&W("oe",d.charset)}else =
+if(Z(f)){c.google_ad_url=3Di+"/pagead/sdo?";j=3Descape(Pb(c.google_ad_cli=
+ent))}else{c.google_ad_url=3Di+"/pagead/ads?";j=3Descape(Ob(c.google_ad_c=
+lient))}c.google_ad_url+=3D=0A=
+"client=3D"+j;V("google_ad_host");V("google_ad_host_tier_id");var =
+n=3Dc.google_num_slots_by_client,l=3Dc.google_num_slots_by_channel,u=3Dc.=
+google_prev_ad_formats_by_region,v=3Dc.google_prev_ad_slotnames_by_region=
+;if(c.google_ad_region=3D=3Db&&c.google_ad_section!=3Db)c.google_ad_regio=
+n=3Dc.google_ad_section;var =
+q=3Dc.google_ad_region=3D=3Db?"":c.google_ad_region;if(Z(f)){c.google_num=
+_sdo_slots=3Dc.google_num_sdo_slots?c.google_num_sdo_slots+1:1;if(c.googl=
+e_num_sdo_slots>4)return g}else =
+if(Tb(c)){c.google_num_0ad_slots=3Dc.google_num_0ad_slots?=0A=
+c.google_num_0ad_slots+1:1;if(c.google_num_0ad_slots>3)return g}else =
+if(c.google_cpa_choice=3D=3Db){c.google_num_ad_slots=3Dc.google_num_ad_sl=
+ots?c.google_num_ad_slots+1:1;if(c.google_num_slots_to_rotate){u[q]=3Db;v=
+[q]=3Db;if(c.google_num_slot_to_show=3D=3Db)c.google_num_slot_to_show=3De=
+%c.google_num_slots_to_rotate+1;if(c.google_num_slot_to_show!=3Dc.google_=
+num_ad_slots)return g}else if(c.google_num_ad_slots>6&&q=3D=3D"")return =
+g}U("dt",m);V("google_language");c.google_country?V("google_country"):V("=
+google_gl");V("google_region");=0A=
+X("google_city");X("google_hints");V("google_safe");V("google_encoding");=
+V("google_last_modified_time");X("google_alternate_ad_url");V("google_alt=
+ernate_color");V("google_skip");V("google_targeting");var =
+E=3Dc.google_ad_client;if(n[E])n[E]+=3D1;else{n[E]=3D1;n.length+=3D1}if(u=
+[q])if(!Z(f)){W("prev_fmts",u[q].toLowerCase());n.length>1&&U("slot",n[E]=
+)}v[q]&&W("prev_slotnames",v[q].toLowerCase());if(dc(f,c.google_ad_slot,G=
+b)){W("format",f.toLowerCase());Z(f)||(u[q]=3Du[q]?u[q]+","+f:f)}else =
+if(c.google_ad_slot)v[q]=3D=0A=
+v[q]?v[q]+","+c.google_ad_slot:c.google_ad_slot;V("google_max_num_ads");U=
+("output",c.google_ad_output);V("google_adtest");V("google_ad_callback");=
+V("google_ad_slot");X("google_correlator");c.google_new_domain_checked=3D=
+=3D1&&c.google_new_domain_enabled=3D=3D0&&U("dblk",1);if(c.google_ad_chan=
+nel){X("google_ad_channel");var =
+T=3D"",cb=3Dc.google_ad_channel.split(hc),na=3D0;for(;na<cb.length;na++){=
+var oa=3Dcb[na];if(l[oa])T+=3Doa+"+";else =
+l[oa]=3D1}W("pv_ch",T)}if(c.google_ad_host_channel){X("google_ad_host_cha=
+nnel");var pc=3D=0A=
+ic(c.google_ad_host_channel,c.google_viewed_host_channels);W("pv_h_ch",pc=
+)}c.google_enable_first_party_cookie&&W("cookie",c._GA_googleCookieHelper=
+.o());X("google_page_url");Y("google_color_bg",e);Y("google_color_text",e=
+);Y("google_color_link",e);Y("google_color_url",e);Y("google_color_border=
+",e);Y("google_color_line",e);c.google_reuse_colors?U("reuse_colors",1):U=
+("reuse_colors",0);V("google_font_face");V("google_kw_type");X("google_kw=
+");X("google_contents");V("google_num_radlinks");V("google_max_radlink_le=
+n");=0A=
+V("google_rl_filtering");V("google_rl_mode");V("google_rt");X("google_rl_=
+dest_url");V("google_num_radlinks_per_unit");V("google_ad_type");V("googl=
+e_image_size");V("google_ad_region");if(R)if(c.google_expandable_iframe=3D=
+=3D=3Dg)Yb(c);else if(j =
+in{"ca-pub-2944451727872625":1,"ca-pub-9483266128490610":1,"ca-pub-195592=
+4717845427":1,"ca-pub-6664249124335298":1})c.google_expandable_iframe=3Dk=
+;else{if(!(c.google_expandable_iframe=3D=3Dk)){var =
+N=3DUb();Q(N);if(N=3D=3D"30143019"||N=3D=3D""&&!Hb)Yb(c);if(!N){N=3DVb();=
+Q(N)}}}else Yb(c);=0A=
+W("eid",P);var =
+db=3Dc.google_allow_expandable_ads;if(db!=3Dh)db?U("ea","1"):U("ea","0");=
+V("google_feedback");X("google_referrer_url");X("google_page_location");U=
+("frm",c.google_iframing);V("google_bid");V("google_ctr_threshold");V("go=
+ogle_cust_age");V("google_cust_gender");V("google_cust_interests");V("goo=
+gle_cust_id");V("google_cust_job");V("google_cust_u_url");V("google_cust_=
+l");V("google_cust_lh");V("google_cust_ch");V("google_ed");V("google_vide=
+o_doc_id");V("google_video_product_type");X("google_ui_features");=0A=
+X("google_ui_version");X("google_tag_info");X("google_only_ads_with_video=
+");X("google_only_pyv_ads");X("google_disable_video_autoplay");if(a){W("f=
+f",wb(a));W("fs",Ab(a));var =
+pa=3Dub(a),qa=3DYa();if(pa&&qa){W("biw",qa.width);W("bih",qa.height);W("a=
+dx",pa.x);W("ady",pa.y)}}Bb();U("ga_vid",c.gaGlobal.vid);U("ga_sid",c.gaG=
+lobal.sid);U("ga_hid",c.gaGlobal.hid);U("ga_fc",c.gaGlobal.from_cookie);X=
+("google_analytics_uacct");V("google_ad_override");V("google_flash_versio=
+n");Mb(c);return k}=0A=
+function ic(a,b){var =
+c=3Da.split("|"),d=3D-1,e=3D[],f=3D0;for(;f<c.length;f++){var =
+i=3Dc[f].split(hc);b[f]||(b[f]=3D{});var =
+j=3D"",n=3D0;for(;n<i.length;n++){var =
+l=3Di[n];if(!(l=3D=3D""))if(b[f][l])j+=3D"+"+l;else =
+b[f][l]=3D1}j=3Dj.slice(1);e[f]=3Dj;if(j!=3D"")d=3Df}var =
+u=3D"";if(d>-1){var f=3D0;for(;f<d;f++)u+=3De[f]+"|";u+=3De[d]}return u}=0A=
+function jc(){var a=3Dwindow,b=3Ddocument;Nb(a);var c=3DWb();Q(c);var =
+d;if(c=3D=3D"6083029"){var =
+e=3D"google_temp_span";d=3Da.google_container_id&&Va(a.google_container_i=
+d)||Va(e);if(!d&&!a.google_container_id){b.write("<span =
+id=3D"+e+"></span>");d=3DVa(e)}}var =
+f=3Dfc(d);d&&d.id=3D=3De&&ab(d);if(!!f){Zb(a,b,a.google_ad_url);ec(a)}}fu=
+nction $(a){var b=3D(new =
+Date).getTime()-m,c=3D"&dtd=3D"+(b<1000?b:"M");return a+c}function =
+kc(){jc();return k}=0A=
+function Sb(a,b){if(a.top.location=3D=3Db.location)return g;var =
+c=3Db.documentElement;if(a.google_ad_width&&a.google_ad_height){var =
+d=3D1,e=3D1;if(a.innerHeight){d=3Da.innerWidth;e=3Da.innerHeight}else =
+if(c&&c.clientHeight){d=3Dc.clientWidth;e=3Dc.clientHeight}else =
+if(b.body){d=3Db.body.clientWidth;e=3Db.body.clientHeight}if(e>2*a.google=
+_ad_height||d>2*a.google_ad_width)return g}return k}=0A=
+function lc(a){var =
+b=3Dwindow,c=3Dh,d=3Db.onerror;b.onerror=3Da;if(b.google_ad_frameborder=3D=
+=3Dc)b.google_ad_frameborder=3D0;if(b.google_ad_output=3D=3Dc)b.google_ad=
+_output=3D"html";if(Z(b.google_ad_format)){var =
+e=3Db.google_ad_format.match(/^(\d+)x(\d+)_.*/);if(e){b.google_ad_width=3D=
+parseInt(e[1],10);b.google_ad_height=3DparseInt(e[2],10);b.google_ad_outp=
+ut=3D"html"}}if(b.google_ad_format=3D=3Dc&&b.google_ad_output=3D=3D"html"=
+){b.google_ad_format=3Db.google_ad_width+"x"+b.google_ad_height;Gb=3Dg}mc=
+(b,document);if(b.google_num_slots_by_channel=3D=3D=0A=
+c)b.google_num_slots_by_channel=3D[];if(b.google_viewed_host_channels=3D=3D=
+c)b.google_viewed_host_channels=3D[];if(b.google_num_slots_by_client=3D=3D=
+c)b.google_num_slots_by_client=3D[];if(b.google_prev_ad_formats_by_region=
+=3D=3Dc)b.google_prev_ad_formats_by_region=3D[];if(b.google_prev_ad_slotn=
+ames_by_region=3D=3Dc)b.google_prev_ad_slotnames_by_region=3D[];if(b.goog=
+le_correlator=3D=3Dc)b.google_correlator=3Dm;if(b.google_adslot_loaded=3D=
+=3Dc)b.google_adslot_loaded=3D{};if(b.google_adContentsBySlot=3D=3Dc)b.go=
+ogle_adContentsBySlot=3D{};if(b.google_flash_version=3D=3D=0A=
+c)b.google_flash_version=3Dea();if(b.google_new_domain_checked=3D=3Dc)b.g=
+oogle_new_domain_checked=3D0;if(b.google_new_domain_enabled=3D=3Dc)b.goog=
+le_new_domain_enabled=3D0;b.onerror=3Dd}function nc(a){if(a in oc)return =
+oc[a];return =
+oc[a]=3Dnavigator.userAgent.toLowerCase().indexOf(a)!=3D-1}var =
+oc=3D{};function fa(){return nc("msie")&&!window.opera}=0A=
+function qc(a){var =
+b=3D{},c=3Da.split("?"),d=3Dc[c.length-1].split("&"),e=3D0;for(;e<d.lengt=
+h;e++){var =
+f=3Dd[e].split("=3D");if(f[0])try{b[f[0].toLowerCase()]=3Df.length>1?wind=
+ow.decodeURIComponent?decodeURIComponent(f[1].replace(/\+/g," =
+")):unescape(f[1]):""}catch(i){}}return b}function rc(){var =
+a=3Dwindow,b=3Dqc(document.URL);if(b.google_ad_override){a.google_ad_over=
+ride=3Db.google_ad_override;a.google_adtest=3D"on"}}function =
+sc(a,b){for(var c in b)a["google_"+c]=3Db[c]}=0A=
+function tc(a,b){if(!b)return a.location;return a.referrer}function =
+uc(a,b){if(!b&&a.google_referrer_url=3D=3Dh)return"0";else =
+if(b&&a.google_referrer_url=3D=3Dh)return"1";else =
+if(!b&&a.google_referrer_url!=3Dh)return"2";else =
+if(b&&a.google_referrer_url!=3Dh)return"3";return"4"}function =
+vc(a,b,c,d){a.page_url=3Dtc(c,d);a.page_location=3Dh}function =
+wc(a,b,c,d){a.page_url=3Db.google_page_url;a.page_location=3Dtc(c,d)||"EM=
+PTY"}=0A=
+function xc(a,b){var =
+c=3D{},d=3DSb(a,b);c.iframing=3Duc(a,d);!!a.google_page_url?wc(c,a,b,d):v=
+c(c,a,b,d);c.last_modified_time=3Db.location=3D=3Dc.page_url?Date.parse(b=
+.lastModified)/1000:h;c.referrer_url=3Dd?a.google_referrer_url:a.google_p=
+age_url&&a.google_referrer_url?a.google_referrer_url:b.referrer;return =
+c}function yc(a){var =
+b=3D{},c=3Da.URL.substring(a.URL.lastIndexOf("http"));b.iframing=3Dh;b.pa=
+ge_url=3Dc;b.page_location=3Da.location;b.last_modified_time=3Dh;b.referr=
+er_url=3Dc;return b}=0A=
+function mc(a,b){var =
+c;c=3Da.google_page_url=3D=3Dh&&zc[b.domain]?yc(b):xc(a,b);sc(a,c)}functi=
+on bc(a,b,c){if(a){var =
+d=3Db.getElementById(a);if(d&&c&&c.length!=3D""){d.style.visibility=3D"vi=
+sible";d.innerHTML=3Dc}}}var zc=3D{};zc["ad.yieldmanager.com"]=3Dk;var =
+hc=3D/[+, ]/;window.google_render_ad=3Djc;var =
+Ac=3D{google:1,googlegroups:1,gmail:1,googlemail:1,orkut:1,googleimages:1=
+,googleprint:1};function Bc(a){var =
+b=3Da.google_page_location||a.google_page_url;if(!b)return =
+g;b=3Db.toString();if(b.indexOf("http://")=3D=3D0)b=3Db.substring(7,b.len=
+gth);else =
+if(b.indexOf("https://")=3D=3D0)b=3Db.substring(8,b.length);var =
+c=3Db.indexOf("/");if(c=3D=3D-1)c=3Db.length;var =
+d=3Db.substring(0,c),e=3Dd.split("."),f=3Dg;if(e.length>=3D3)f=3De[e.leng=
+th-3]in Ac;if(e.length>=3D2)f=3Df||e[e.length-2]in Ac;return f}=0A=
+function Lb(a,b,c){if(Bc(a)){a.google_new_domain_checked=3D1;return =
+g}if(a.google_new_domain_checked=3D=3D0){var =
+d=3DMath.random();if(d<=3Dc){var =
+e=3D"http://googleads.g.doubleclick.net/pagead/test_domain.js",f=3D"scrip=
+t";b.write("<"+f+' =
+src=3D"'+e+'"></'+f+">");a.google_new_domain_checked=3D1;return =
+k}}return g}function gc(a){var =
+b=3D"http://googleads.g.doubleclick.net",c=3D"http://pagead2.googlesyndic=
+ation.com";if(!Bc(a)&&a.google_new_domain_enabled=3D=3D1)return b;return =
+c};rc();lc(kc);Ib(window,document);=0A=
+})()=0A=
+
+------=_NextPart_000_0000_01C9A369.AD20A0A0--
