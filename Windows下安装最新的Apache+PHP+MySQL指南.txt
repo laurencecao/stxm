@@ -1,0 +1,72 @@
+Windows下安装最新的Apache+PHP+MySQL指南
+
+0.前言
+	此文章的安装方法适用于Windows XP下的Apache+PHP+MySQL安装，同时也适用于Windows xp、2003系统下的安装和配置。
+
+1. 安装环境
+	WindowsXP, Apache, PHP, MySQL
+
+2. 安装的目录结构规划
+	为了方便维护，可以将服务器软件安装在系统盘（C盘）而把自己的文件定位到其他盘，这样对于以后的维护很重要。
+
+3. 在 Windows XP 下安装 Apache 2.2.6
+	Windows XP 下的安装
+	1. 运行 apache 2.2.6 的安装程序，根据提示一路 Next 即可。在 Server Information 的 Network Domain、Server Name 字段随便填上一个域名即可，如php.com，然后根据提示一路 Next 完成即可。	
+	2. 在安装结束时，会弹出一个 DOS 窗口，然后就消失了，这是系统apache自动启动了。
+	
+4. 在 Windows XP 下安装 php 5.2.4
+	1. 将下载的 php 5 ZIP 包直接解压，我直接将 PHP 5.2.4 zip 文件解压到 X:\php 目录下面。安装 php 不建议使用 win32 安装程序(主要是以后安装扩展麻烦）。
+	2. 在资源管理器中进入 php 的安装目录，将 php.ini-dist 或 php.ini-recommended 复制一份，命名为 php.ini。然后打开 php.ini。
+	3. 找到:
+	;extension=php_mysql.dll
+	将前面的 ; 号去掉， 改成：
+	extension=php_mysql.dll
+	4. 找到:
+	extension_dir = "./"
+	将其改为你的 php 安装目录下 ext 子目录的绝对路径。例如我的：
+	extension_dir = "D:/php/ext/"
+	这步很重要 。否则接下来 php 会找不到 php_mysql.dll 模块，无法装载。
+	5. 在"控制面板"->"系统"->"高级"->"环境变量"，在"系统变量"里面找到path，编辑path的变量值，添加你的php目录X:\php，前面一定要用分号(;)把它和前面的值分开。 
+	
+5. 配置 Apache 和 PHP
+
+	打开 Apache 安装目录下的 conf 子目录中的 httpd.conf 文件。
+	1. 找到：
+	DocumentRoot "xxxxxxx"
+	改成你本机的网站内容的目录。例如我的：
+	DocumentRoot "E:/web"
+	改完之后往下稍微拉动一下，找到"# This should be changed to whatever you set DocumentRoot to."，然后把下面这个地方也改过来
+	<Directory "E:/web">
+	2. 找到 LoadModule，根据你的 php 安装目录，在下面空白处加上这两行：
+	LoadModule php5_module "D:/PHP/php5apache2_2.dll"
+	PHPIniDir "X:/PHP"
+	3. 找到:
+	DirectoryIndex index.html
+	修改为:
+	DirectoryIndex index.php index.html
+	4. 找到:
+	AddType application/x-gzip .gz .tgz
+	添加这两行：
+	AddType application/x-httpd-php .php
+	AddType application/x-httpd-php .html
+	5. 保存 httpd.conf
+	6. 在你的网站目录中(例如我的是 E:/Web/)，手工建立一个 index.php 的文件，内容:
+	<?php
+	phpinfo();
+	?>
+	7. 在 dos 窗口中启动 apache 服务（假设Apache安装在了C:\Program Files\Apache Software Foundation\Apache2.2\）
+	#如果之前启动了，先将其 stop
+	C:\Program Files\Apache Software Foundation\Apache2.2\bin\> httpd -k stop
+	或者是：net stop apache2.2
+	#启动 apahce 服务
+	C:\Program Files\Apache Software Foundation\Apache2.2\bin\> httpd -k start
+	或者是：net start apache2.2
+	8. 打开 http://localhost/index.php，即可看到测试输出结果。
+
+6. Windows XP 下安装 MySQL 5.0.45
+	MySQL 的安装比较简单，它提供了一个 win32 的安装包。下载后根据提示一路安装，也可以在安装类型处选 Custom，指定安装目录，这里直接默认安装在了C盘。
+	
+	安装完成后，会问你要不要到官网注册，跳过即可。然后会问你是否 Configure the MySQL Server now，选中并继续，然后根据提示，设定 字符集，以及 root 管理员的密码即可。
+	
+	OK, 现在你可以在 XP 下使用 apache + mysql + php 开发 web 程序了。
+
